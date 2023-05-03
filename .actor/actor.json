@@ -1,0 +1,10 @@
+{
+	"actorSpecification": 1,
+	"environmentVariables": {
+		"npm_config_loglevel": "silent",
+		"DATASET_SLEEP_MS": 18000
+	},
+	"name": "actor-testing",
+	"version": "0.0",
+	"buildTag": "latest"
+}
