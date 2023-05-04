@@ -11,9 +11,129 @@ const main = ({
     moment,
     describe,
 }) => {
+    const checkPost = (post, runResult) => {
+        expect(post.id)
+            .withContext(runResult.format('Post Id'))
+            .toBeNonEmptyString();
+
+        expect(post.parsedId)
+            .withContext(runResult.format('Post Parsed Id'))
+            .toBeNonEmptyString();
+
+        expect(post.url)
+            .withContext(runResult.format('Post Url'))
+            .toStartWith('https://www.reddit.com/r/');
+
+        expect(post.username)
+            .withContext(runResult.format('Post Username'))
+            .toBeNonEmptyString();
+
+        expect(post.title)
+            .withContext(runResult.format('Post Title'))
+            .toBeNonEmptyString();
+
+        expect(post.communityName)
+            .withContext(runResult.format('Post Community Name'))
+            .toBeNonEmptyString();
+
+        expect(post.parsedCommunityName)
+            .withContext(runResult.format('Post Parsed Community Name'))
+            .toBeNonEmptyString();
+
+        expect(post.body)
+            .withContext(runResult.format('Post Body'))
+            .toBeNonEmptyString();
+
+        expect(post.createdAt)
+            .withContext(runResult.format('Post Created At'))
+            .toBeNonEmptyString();
+
+        expect(post.dataType)
+            .withContext(runResult.format('Post Data Type'))
+            .toBe('post');
+    };
+
+    const checkCommunity = (community, runResult) => {
+        expect(community.title)
+            .withContext(runResult.format('Community title'))
+            .toBeNonEmptyString();
+
+        expect(community.alternatineTitle)
+            .withContext(runResult.format('Community alternatine title'))
+            .toBeNonEmptyString();
+
+        expect(community.createdAt)
+            .withContext(runResult.format('Community created at'))
+            .toBeNonEmptyString();
+
+        expect(community.members)
+            .withContext(runResult.format('Community members'))
+            .toBeInstanceOf(Number);
+
+        expect(community.moderators)
+            .withContext(runResult.format('Community moderators'))
+            .toBeNonEmptyArray();
+
+        expect(community.communityUrl)
+            .withContext(runResult.format('Community url'))
+            .toStartWith(
+                `https://www.reddit.com/${community.alternatineTitle}`,
+            );
+    };
+
+    const checkComment = (comment, runResult) => {
+        expect(comment.id)
+            .withContext(runResult.format('Comment Id'))
+            .toBeNonEmptyString();
+
+        expect(comment.parsedId)
+            .withContext(runResult.format('Comment Parsed Id'))
+            .toBeNonEmptyString();
+
+        expect(comment.url)
+            .withContext(runResult.format('Comment Url'))
+            .toStartWith('https://www.reddit.com/r/');
+
+        expect(comment.parentId)
+            .withContext(runResult.format('Comment Parent Id'))
+            .toBeNonEmptyString();
+
+        expect(comment.username)
+            .withContext(runResult.format('Comment Username'))
+            .toBeNonEmptyString();
+
+        expect(comment.category)
+            .withContext(runResult.format('Comment Category'))
+            .toBeNonEmptyString();
+
+        expect(comment.communityName)
+            .withContext(runResult.format('Comment Community Name'))
+            .toBeNonEmptyString();
+
+        expect(comment.body)
+            .withContext(runResult.format('Comment Body'))
+            .toBeNonEmptyString();
+
+        expect(comment.createdAt)
+            .withContext(runResult.format('Comment Created At'))
+            .toBeNonEmptyString();
+
+        expect(comment.upVotes)
+            .withContext(runResult.format('Comment Up Votes'))
+            .toBeInstanceOf(Number);
+
+        expect(comment.numberOfreplies)
+            .withContext(runResult.format('Comment Number of replies'))
+            .toBeInstanceOf(Number);
+
+        expect(comment.dataType)
+            .withContext(runResult.format('Comment Data Type'))
+            .toBe('comment');
+    };
+
     ['beta', 'latest'].forEach((build) => {
         describe(`Reddit scraper (${build} version)`, () => {
-            it('should search for posts succefully', async () => {
+            it('should search for posts successfully', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
@@ -37,7 +157,7 @@ const main = ({
                     options: {
                         build,
                     },
-                    name: 'Reddit Post Health Check',
+                    name: 'Reddit Search Post Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -77,60 +197,14 @@ const main = ({
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-
                         for (const post of results) {
-                            expect(post.id)
-                                .withContext(runResult.format('Id'))
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedId)
-                                .withContext(runResult.format('Parsed Id'))
-                                .toBeNonEmptyString();
-
-                            expect(post.url)
-                                .withContext(runResult.format('Url'))
-                                .toStartWith('https://www.reddit.com/r/');
-
-                            expect(post.username)
-                                .withContext(runResult.format('Username'))
-                                .toBeNonEmptyString();
-
-                            expect(post.title)
-                                .withContext(runResult.format('Title'))
-                                .toBeNonEmptyString();
-
-                            expect(post.communityName)
-                                .withContext(runResult.format('Community Name'))
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedCommunityName)
-                                .withContext(
-                                    runResult.format('Parsed Community Name'),
-                                )
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedCommunityName)
-                                .withContext(
-                                    runResult.format('Parsed Community Name'),
-                                )
-                                .toBeNonEmptyString();
-
-                            expect(post.body)
-                                .withContext(runResult.format('Body'))
-                                .toBeNonEmptyString();
-
-                            expect(post.createdAt)
-                                .withContext(runResult.format('Created At'))
-                                .toBeNonEmptyString();
-
-                            expect(post.dataType)
-                                .withContext(runResult.format('Data Type'))
-                                .toBe('post');
+                            checkPost(post, runResult);
                         }
                     },
                 );
             });
-            it('should search for comments succefully', async () => {
+
+            it('should search for comments successfully', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
@@ -196,61 +270,13 @@ const main = ({
                         const results = dataset.items;
 
                         for (const comment of results) {
-                            expect(comment.id)
-                                .withContext(runResult.format('Id'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.parsedId)
-                                .withContext(runResult.format('Parsed Id'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.url)
-                                .withContext(runResult.format('Url'))
-                                .toStartWith('https://www.reddit.com/r/');
-
-                            expect(comment.parentId)
-                                .withContext(runResult.format('Parent Id'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.username)
-                                .withContext(runResult.format('Username'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.category)
-                                .withContext(runResult.format('Category'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.communityName)
-                                .withContext(runResult.format('Community Name'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.body)
-                                .withContext(runResult.format('Body'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.createdAt)
-                                .withContext(runResult.format('Created At'))
-                                .toBeNonEmptyString();
-
-                            expect(comment.upVotes)
-                                .withContext(runResult.format('Up Votes'))
-                                .toBeInstanceOf(Number);
-
-                            expect(comment.numberOfreplies)
-                                .withContext(
-                                    runResult.format('Number of replies'),
-                                )
-                                .toBeInstanceOf(Number);
-
-                            expect(comment.dataType)
-                                .withContext(runResult.format('Data Type'))
-                                .toBe('comment');
+                            checkComment(comment, runResult);
                         }
                     },
                 );
             });
 
-            it('should search for users succefully', async () => {
+            it('should search for users successfully', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
@@ -316,478 +342,485 @@ const main = ({
                         const results = dataset.items;
 
                         for (const post of results) {
-                            expect(post.id)
-                                .withContext(runResult.format('Id'))
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedId)
-                                .withContext(runResult.format('Parsed Id'))
-                                .toBeNonEmptyString();
-
-                            expect(post.url)
-                                .withContext(runResult.format('Url'))
-                                .toStartWith('https://www.reddit.com/r/');
-
-                            expect(post.username)
-                                .withContext(runResult.format('Username'))
-                                .toBeNonEmptyString();
-
-                            expect(post.title)
-                                .withContext(runResult.format('Title'))
-                                .toBeNonEmptyString();
-
-                            expect(post.communityName)
-                                .withContext(runResult.format('Community Name'))
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedCommunityName)
-                                .withContext(
-                                    runResult.format('Parsed Community Name'),
-                                )
-                                .toBeNonEmptyString();
-
-                            expect(post.parsedCommunityName)
-                                .withContext(
-                                    runResult.format('Parsed Community Name'),
-                                )
-                                .toBeNonEmptyString();
-
-                            expect(post.body)
-                                .withContext(runResult.format('Body'))
-                                .toBeNonEmptyString();
-
-                            expect(post.createdAt)
-                                .withContext(runResult.format('Created At'))
-                                .toBeNonEmptyString();
-
-                            expect(post.dataType)
-                                .withContext(runResult.format('Data Type'))
-                                .toBe('post');
+                            checkPost(post);
                         }
                     },
                 );
             });
-            // it('works with url input for community, post and user (reddit-url)', async () => {
-            //     // it would be great to support other types of url but none other is working at the moment
-            //     const runResult = await run({
-            //         taskId: 'A3K29MChfzrcZykXX',
-            //         options: {
-            //             build,
-            //         },
-            //     });
 
-            //     await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-            //     await expectAsync(runResult).withLog((log) => {
-            //         expect(log)
-            //             .withContext(runResult.format('Log ReferenceError'))
-            //             .not.toContain('ReferenceError');
-            //         expect(log)
-            //             .withContext(runResult.format('Log TypeError'))
-            //             .not.toContain('TypeError');
-            //     });
+            it('should search for community successfully', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesAndUsers: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: true,
+                        searchPosts: false,
+                        searchUsers: false,
+                        skipComments: false,
+                        startUrls: ['pizza'],
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Search Community Check',
+                });
 
-            //     await expectAsync(runResult).withStatistics((stats) => {
-            //         expect(stats.requestsRetries)
-            //             .withContext(runResult.format('Request retries'))
-            //             .toBeLessThan(3);
-            //         expect(stats.crawlerRuntimeMillis)
-            //             .withContext(runResult.format('Run time'))
-            //             .toBeWithinRange(0.1 * 60000, 10 * 60000);
-            //     });
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
 
-            //     await expectAsync(runResult).withDataset(
-            //         ({ dataset, info }) => {
-            //             expect(info.cleanItemCount)
-            //                 .withContext(
-            //                     runResult.format('Dataset cleanItemCount'),
-            //                 )
-            //                 .toBeWithinRange(2, 6);
-            //             // I would like it to be 3 as stated in input, but doesnt work like that in the moment - have always more
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                });
 
-            //             expect(dataset.items)
-            //                 .withContext(
-            //                     runResult.format('Dataset items array'),
-            //                 )
-            //                 .toBeNonEmptyArray();
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
 
-            //             const results = dataset.items;
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
 
-            //             let post;
-            //             let community;
-            //             let comment;
+                        const results = dataset.items;
 
-            //             for (const r in results) {
-            //                 if (results[r].dataType === 'post') {
-            //                     post = results[r];
-            //                 }
-            //                 if (results[r].dataType === 'community') {
-            //                     community = results[r];
-            //                 }
-            //                 if (results[r].dataType === 'user-comments') {
-            //                     comment = results[r];
-            //                 }
-            //             }
+                        let post;
+                        let community;
+                        let comment;
 
-            //             // checking the post
-            //             expect(post.postUrl)
-            //                 .withContext(runResult.format('Post url'))
-            //                 .toBe(
-            //                     'https://www.reddit.com/r/nasa/comments/lcllo8/biden_press_sec_jen_psaki_affirms_admin_support/',
-            //                 );
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                post = result;
+                            }
+                            if (result.dataType === 'community') {
+                                community = result;
+                            }
+                            if (result.dataType === 'comment') {
+                                comment = result;
+                            }
+                        }
 
-            //             expect(post.communityName)
-            //                 .withContext(
-            //                     runResult.format('Post community name'),
-            //                 )
-            //                 .toBe('r/nasa');
+                        // checking the post
+                        checkPost(post, runResult);
 
-            //             expect(post.numberOfVotes)
-            //                 .withContext(
-            //                     runResult.format('Post number of votes'),
-            //                 )
-            //                 .toBeGreaterThan(20000);
+                        // checking the community
+                        checkCommunity(community, runResult);
 
-            //             expect(post.postedBy)
-            //                 .withContext(runResult.format('Post posted by'))
-            //                 .toBe('u/RadionSPW');
+                        // checking the comment
+                        checkComment(comment, runResult);
+                    },
+                );
+            });
 
-            //             // expect(post.postedDate)
-            //             //     .withContext(runResult.format('Post posted date'))
-            //             //     .toStartWith('2021-02-05');
+            it('should scrape community', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesAndUsers: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        skipComments: false,
+                        startUrls: [
+                            {
+                                url: 'https://www.reddit.com/r/AskReddit/',
+                            },
+                        ],
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Community Check',
+                });
 
-            //             expect(post.title)
-            //                 .withContext(runResult.format('Post title'))
-            //                 .toBe(
-            //                     'Biden Press Sec Jen Psaki Affirms Admin Support for Artemis Program',
-            //                 );
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
 
-            //             expect(post.comments)
-            //                 .withContext(runResult.format('Post comments'))
-            //                 .toBeNonEmptyArray();
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                });
 
-            //             // checking the community
-            //             expect(community.title)
-            //                 .withContext(runResult.format('Community title'))
-            //                 .toBe('Minecraft on reddit');
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
 
-            //             expect(community.title2)
-            //                 .withContext(runResult.format('Community title2'))
-            //                 .toBe('r/Minecraft');
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
 
-            //             expect(community.createdAt)
-            //                 .withContext(
-            //                     runResult.format('Community created at'),
-            //                 )
-            //                 .toBe('2009-06-11T00:00:00.000Z');
+                        const results = dataset.items;
 
-            //             expect(community.members)
-            //                 .withContext(runResult.format('Community members'))
-            //                 .toBeGreaterThan(111111);
-            //             // make it bigger when fixed
+                        let post;
+                        let community;
+                        let comment;
 
-            //             expect(community.moderators)
-            //                 .withContext(
-            //                     runResult.format('Community moderators'),
-            //                 )
-            //                 .toBeNonEmptyArray();
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                post = result;
+                            }
+                            if (result.dataType === 'community') {
+                                community = result;
+                            }
+                            if (result.dataType === 'comment') {
+                                comment = result;
+                            }
+                        }
 
-            //             expect(community.moderators)
-            //                 .withContext(
-            //                     runResult.format(
-            //                         'Community moderators contains',
-            //                     ),
-            //                 )
-            //                 .toContain('BritishEnglishPolice');
+                        // checking the post
+                        checkPost(post, runResult);
 
-            //             expect(community.communityUrl)
-            //                 .withContext(runResult.format('Community url'))
-            //                 .toBe('https://www.reddit.com/r/Minecraft/');
+                        // checking the community
+                        checkCommunity(community, runResult);
 
-            //             expect(community.posts)
-            //                 .withContext(runResult.format('Community posts'))
-            //                 .toBeNonEmptyArray();
+                        // checking the comment
+                        checkComment(comment, runResult);
+                    },
+                );
+            });
 
-            //             expect(community.posts.length)
-            //                 .withContext(
-            //                     runResult.format('Community posts length'),
-            //                 )
-            //                 .toBe(3);
+            it('should scrape protected community', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesAndUsers: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        skipComments: false,
+                        startUrls: [
+                            {
+                                url: 'https://www.reddit.com/r/nsfw/',
+                            },
+                        ],
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Protected Community Check',
+                });
 
-            //             // checking the comment
-            //             expect(comment.user)
-            //                 .withContext(runResult.format('Comment user'))
-            //                 .toBe('lukaskrivka');
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
 
-            //             expect(comment.userUrl)
-            //                 .withContext(runResult.format('Comment user url'))
-            //                 .toBe('https://www.reddit.com/user/lukaskrivka/');
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                });
 
-            //             expect(comment.comments)
-            //                 .withContext(runResult.format('Comment comments'))
-            //                 .toBeNonEmptyArray();
-            //         },
-            //     );
-            // });
-            // it('works with search term for posts (reddit-search-post-date)', async () => {
-            //     const runResult = await run({
-            //         taskId: 'HCrcjOjHkVapBLLGG',
-            //         options: {
-            //             build,
-            //         },
-            //     });
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
 
-            //     await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-            //     await expectAsync(runResult).withLog((log) => {
-            //         expect(log)
-            //             .withContext(runResult.format('Log ReferenceError'))
-            //             .not.toContain('ReferenceError');
-            //         expect(log)
-            //             .withContext(runResult.format('Log TypeError'))
-            //             .not.toContain('TypeError');
-            //     });
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
 
-            //     await expectAsync(runResult).withStatistics((stats) => {
-            //         expect(stats.requestsRetries)
-            //             .withContext(runResult.format('Request retries'))
-            //             .toBeLessThan(3);
-            //         expect(stats.crawlerRuntimeMillis)
-            //             .withContext(runResult.format('Run time'))
-            //             .toBeWithinRange(0.1 * 60000, 10 * 60000);
-            //     });
+                        const results = dataset.items;
 
-            //     await expectAsync(runResult).withDataset(
-            //         ({ dataset, info }) => {
-            //             expect(info.cleanItemCount)
-            //                 .withContext(
-            //                     runResult.format('Dataset cleanItemCount'),
-            //                 )
-            //                 .toBe(3);
+                        let post;
+                        let community;
+                        let comment;
 
-            //             expect(dataset.items)
-            //                 .withContext(
-            //                     runResult.format('Dataset items array'),
-            //                 )
-            //                 .toBeNonEmptyArray();
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                post = result;
+                            }
+                            if (result.dataType === 'community') {
+                                community = result;
+                            }
+                            if (result.dataType === 'comment') {
+                                comment = result;
+                            }
+                        }
 
-            //             const results = dataset.items;
+                        // checking the post
+                        checkPost(post, runResult);
 
-            //             for (const r in results) {
-            //                 expect(results[r].dataType)
-            //                     .withContext(runResult.format('Data type'))
-            //                     .toBe('post');
+                        // checking the community
+                        checkCommunity(community, runResult);
 
-            //                 expect(results[r].postUrl)
-            //                     .withContext(runResult.format('Post url'))
-            //                     .toStartWith('https://www.reddit.com/');
+                        // checking the comment
+                        checkComment(comment, runResult);
+                    },
+                );
+            });
 
-            //                 expect(results[r].communityName)
-            //                     .withContext(runResult.format('Community name'))
-            //                     .toStartWith('r/');
+            it('should search for url from gslink for popular community', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesAndUsers: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        skipComments: false,
+                        startUrls: [],
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit GSlink Popular Community Check',
+                });
 
-            //                 expect(results[r].communityUrl)
-            //                     .withContext(runResult.format('Community url'))
-            //                     .toStartWith('https://www.reddit.com/r/');
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                });
 
-            //                 expect(results[r].numberOfVotes)
-            //                     .withContext(
-            //                         runResult.format('Number of votes'),
-            //                     )
-            //                     .toBeGreaterThan(10);
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(3);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1 * 60, 10 * 60000);
+                });
 
-            //                 expect(results[r].title.toLowerCase())
-            //                     .withContext(runResult.format('Post title'))
-            //                     .toContain('fun');
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(3);
 
-            //                 expect(results[r].comments)
-            //                     .withContext(runResult.format('Comments'))
-            //                     .toBeNonEmptyArray();
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
 
-            //                 expect(
-            //                     moment()
-            //                         .subtract(24, 'hour')
-            //                         .diff(results[r].postedDate),
-            //                 )
-            //                     .withContext(runResult.format('Post date'))
-            //                     .toBeLessThan(0);
-            //             }
-            //         },
-            //     );
-            // });
-            // it('search term for communities ("reddit-search-communities")', async () => {
-            //     const runResult = await run({
-            //         taskId: 'QmfQoVf7KSFebAIXB',
-            //         options: {
-            //             build,
-            //         },
-            //     });
+                        const results = dataset.items;
 
-            //     await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-            //     await expectAsync(runResult).withLog((log) => {
-            //         expect(log)
-            //             .withContext(runResult.format('Log ReferenceError'))
-            //             .not.toContain('ReferenceError');
-            //         expect(log)
-            //             .withContext(runResult.format('Log TypeError'))
-            //             .not.toContain('TypeError');
-            //     });
+                        let post;
+                        let community;
+                        let comment;
 
-            //     await expectAsync(runResult).withStatistics((stats) => {
-            //         expect(stats.requestsRetries)
-            //             .withContext(runResult.format('Request retries'))
-            //             .toBeLessThan(3);
-            //         expect(stats.crawlerRuntimeMillis)
-            //             .withContext(runResult.format('Run time'))
-            //             .toBeWithinRange(1 * 60, 10 * 60000);
-            //     });
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                post = result;
+                            }
+                            if (result.dataType === 'community') {
+                                community = result;
+                            }
+                            if (result.dataType === 'comment') {
+                                comment = result;
+                            }
+                        }
 
-            //     await expectAsync(runResult).withDataset(
-            //         ({ dataset, info }) => {
-            //             expect(info.cleanItemCount)
-            //                 .withContext(
-            //                     runResult.format('Dataset cleanItemCount'),
-            //                 )
-            //                 .toBe(3);
+                        // checking the post
+                        checkPost(post, runResult);
 
-            //             expect(dataset.items)
-            //                 .withContext(
-            //                     runResult.format('Dataset items array'),
-            //                 )
-            //                 .toBeNonEmptyArray();
+                        // checking the community
+                        checkCommunity(community, runResult);
 
-            //             const results = dataset.items;
+                        // checking the comment
+                        checkComment(comment, runResult);
+                    },
+                );
+            });
 
-            //             let isCorrectPosts = false;
-            //             let isCorrectPostNumber = false;
+            it('should scrape leaderboard url', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 3,
+                        maxCommunitiesAndUsers: 3,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 3,
+                        maxPostCount: 3,
+                        proxy: {
+                            useApifyProxy: true,
+                        },
+                        searches: [''],
+                        startUrls: [
+                            {
+                                url: 'https://www.reddit.com/subreddits/leaderboard/',
+                                method: 'GET',
+                            },
+                        ],
+                        time: 'all',
+                        type: 'posts',
+                        skipComments: false,
+                        searchPosts: false,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchUsers: false,
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Leaderboard Page Check',
+                });
 
-            //             for (const r in results) {
-            //                 if (Array.isArray(results[r].posts)) {
-            //                     isCorrectPosts = true;
-            //                 }
-            //                 if (results[r].posts?.length > 0) {
-            //                     isCorrectPostNumber = true;
-            //                 }
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                });
 
-            //                 expect(results[r].title)
-            //                     .withContext(
-            //                         runResult.format('Community title'),
-            //                     )
-            //                     .toBeNonEmptyString();
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(3);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1 * 60, 10 * 60000);
+                });
 
-            //                 expect(results[r].members)
-            //                     .withContext(
-            //                         runResult.format(
-            //                             'Number of community members',
-            //                         ),
-            //                     )
-            //                     .toBeGreaterThan(1000);
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(3);
 
-            //                 expect(results[r].moderators)
-            //                     .withContext(
-            //                         runResult.format('Community moderators'),
-            //                     )
-            //                     .toBeNonEmptyArray();
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
 
-            //                 expect(results[r].communityUrl)
-            //                     .withContext(runResult.format('Community url'))
-            //                     .toStartWith('https://www.reddit.com/r/');
+                        const results = dataset.items;
 
-            //                 expect(results[r].category)
-            //                     .withContext(
-            //                         runResult.format('Community category'),
-            //                     )
-            //                     .toBeNonEmptyString();
+                        let post;
+                        let community;
+                        let comment;
 
-            //                 expect(results[r].dataType)
-            //                     .withContext(runResult.format('Data type'))
-            //                     .toBe('community');
-            //             }
-            //             expect(isCorrectPosts)
-            //                 .withContext(runResult.format('Community posts'))
-            //                 .toBe(true);
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                post = result;
+                            }
+                            if (result.dataType === 'community') {
+                                community = result;
+                            }
+                            if (result.dataType === 'comment') {
+                                comment = result;
+                            }
+                        }
 
-            //             expect(isCorrectPostNumber)
-            //                 .withContext(
-            //                     runResult.format('Community posts number'),
-            //                 )
-            //                 .toBe(true);
-            //         },
-            //     );
-            // });
-            // it('search term for url from gslink, community channel and popular ("reddit-gslink")', async () => {
-            //     const runResult = await run({
-            //         taskId: 'jQaE940zqPLsvgzkq',
-            //         options: {
-            //             build,
-            //         },
-            //     });
+                        // checking the post
+                        checkPost(post, runResult);
 
-            //     await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-            //     await expectAsync(runResult).withLog((log) => {
-            //         expect(log)
-            //             .withContext(runResult.format('Log ReferenceError'))
-            //             .not.toContain('ReferenceError');
-            //         expect(log)
-            //             .withContext(runResult.format('Log TypeError'))
-            //             .not.toContain('TypeError');
-            //     });
+                        // checking the community
+                        checkCommunity(community, runResult);
 
-            //     await expectAsync(runResult).withStatistics((stats) => {
-            //         expect(stats.requestsRetries)
-            //             .withContext(runResult.format('Request retries'))
-            //             .toBeLessThan(3);
-            //         expect(stats.crawlerRuntimeMillis)
-            //             .withContext(runResult.format('Run time'))
-            //             .toBeWithinRange(1 * 60, 10 * 60000);
-            //     });
-
-            //     await expectAsync(runResult).withDataset(
-            //         ({ dataset, info }) => {
-            //             expect(info.cleanItemCount)
-            //                 .withContext(
-            //                     runResult.format('Dataset cleanItemCount'),
-            //                 )
-            //                 .toBe(3);
-
-            //             expect(dataset.items)
-            //                 .withContext(
-            //                     runResult.format('Dataset items array'),
-            //                 )
-            //                 .toBeNonEmptyArray();
-
-            //             const results = dataset.items;
-
-            //             for (const r in results) {
-            //                 expect(results[r].title)
-            //                     .withContext(
-            //                         runResult.format('Community title'),
-            //                     )
-            //                     .toBe('popular');
-
-            //                 expect(results[r].category)
-            //                     .withContext(
-            //                         runResult.format('Community category'),
-            //                     )
-            //                     .toBeNonEmptyString();
-
-            //                 expect(results[r].dataType)
-            //                     .withContext(runResult.format('Data type'))
-            //                     .toBe('community');
-
-            //                 expect(results[r].posts)
-            //                     .withContext(
-            //                         runResult.format('Community posts'),
-            //                     )
-            //                     .toBeNonEmptyArray();
-
-            //                 expect(results[r].posts.length)
-            //                     .withContext(
-            //                         runResult.format('Community posts number'),
-            //                     )
-            //                     .toBe(1);
-            //             }
-            //         },
-            //     );
-            // });
+                        // checking the comment
+                        checkComment(comment, runResult);
+                    },
+                );
+            });
         });
     });
 };
