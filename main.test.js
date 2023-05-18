@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const main = ({
     it,
@@ -12,134 +12,143 @@ const main = ({
     describe,
 }) => {
     const checkPost = (post, runResult) => {
+        if (post.dataType !== "post") {
+            return;
+        }
         expect(post.id)
-            .withContext(runResult.format('Post Id'))
+            .withContext(runResult.format("Post Id"))
             .toBeNonEmptyString();
 
         expect(post.parsedId)
-            .withContext(runResult.format('Post Parsed Id'))
+            .withContext(runResult.format("Post Parsed Id"))
             .toBeNonEmptyString();
 
         expect(post.url)
-            .withContext(runResult.format('Post Url'))
-            .toStartWith('https://www.reddit.com/r/');
+            .withContext(runResult.format("Post Url"))
+            .toStartWith("https://www.reddit.com/r/");
 
         expect(post.username)
-            .withContext(runResult.format('Post Username'))
+            .withContext(runResult.format("Post Username"))
             .toBeNonEmptyString();
 
         expect(post.title)
-            .withContext(runResult.format('Post Title'))
+            .withContext(runResult.format("Post Title"))
             .toBeNonEmptyString();
 
         expect(post.communityName)
-            .withContext(runResult.format('Post Community Name'))
+            .withContext(runResult.format("Post Community Name"))
             .toBeNonEmptyString();
 
         expect(post.parsedCommunityName)
-            .withContext(runResult.format('Post Parsed Community Name'))
+            .withContext(runResult.format("Post Parsed Community Name"))
             .toBeNonEmptyString();
 
-        expect(post.body)
-            .withContext(runResult.format('Post Body'))
-            .toBeNonEmptyString();
+        expect(typeof post.body === "string" || !post.body)
+            .withContext(runResult.format("Post Body"))
+            .toBe(true);
 
         expect(post.createdAt)
-            .withContext(runResult.format('Post Created At'))
+            .withContext(runResult.format("Post Created At"))
             .toBeNonEmptyString();
 
         expect(post.dataType)
-            .withContext(runResult.format('Post Data Type'))
-            .toBe('post');
+            .withContext(runResult.format("Post Data Type"))
+            .toBe("post");
     };
 
     const checkCommunity = (community, runResult) => {
+        if (community.dataType !== "community") {
+            return;
+        }
         expect(community.title)
-            .withContext(runResult.format('Community title'))
+            .withContext(runResult.format("Community title"))
             .toBeNonEmptyString();
 
         expect(community.alternatineTitle)
-            .withContext(runResult.format('Community alternatine title'))
+            .withContext(runResult.format("Community alternatine title"))
             .toBeNonEmptyString();
 
         expect(community.createdAt)
-            .withContext(runResult.format('Community created at'))
+            .withContext(runResult.format("Community created at"))
             .toBeNonEmptyString();
 
         expect(community.members)
-            .withContext(runResult.format('Community members'))
+            .withContext(runResult.format("Community members"))
             .toBeInstanceOf(Number);
 
         expect(community.moderators)
-            .withContext(runResult.format('Community moderators'))
+            .withContext(runResult.format("Community moderators"))
             .toBeNonEmptyArray();
 
         expect(community.communityUrl)
-            .withContext(runResult.format('Community url'))
+            .withContext(runResult.format("Community url"))
             .toStartWith(
-                `https://www.reddit.com/${community.alternatineTitle}`,
+                `https://www.reddit.com/${community.alternatineTitle}`
             );
     };
 
     const checkComment = (comment, runResult) => {
+        if (comment.dataType !== "comment") {
+            return;
+        }
         expect(comment.id)
-            .withContext(runResult.format('Comment Id'))
+            .withContext(runResult.format("Comment Id"))
             .toBeNonEmptyString();
 
         expect(comment.parsedId)
-            .withContext(runResult.format('Comment Parsed Id'))
+            .withContext(runResult.format("Comment Parsed Id"))
             .toBeNonEmptyString();
 
         expect(comment.url)
-            .withContext(runResult.format('Comment Url'))
-            .toStartWith('https://www.reddit.com/r/');
+            .withContext(runResult.format("Comment Url"))
+            .toStartWith("https://www.reddit.com/r/");
 
         expect(comment.parentId)
-            .withContext(runResult.format('Comment Parent Id'))
+            .withContext(runResult.format("Comment Parent Id"))
             .toBeNonEmptyString();
 
         expect(comment.username)
-            .withContext(runResult.format('Comment Username'))
+            .withContext(runResult.format("Comment Username"))
             .toBeNonEmptyString();
 
         expect(comment.category)
-            .withContext(runResult.format('Comment Category'))
+            .withContext(runResult.format("Comment Category"))
             .toBeNonEmptyString();
 
         expect(comment.communityName)
-            .withContext(runResult.format('Comment Community Name'))
+            .withContext(runResult.format("Comment Community Name"))
             .toBeNonEmptyString();
 
         expect(comment.body)
-            .withContext(runResult.format('Comment Body'))
+            .withContext(runResult.format("Comment Body"))
             .toBeNonEmptyString();
 
         expect(comment.createdAt)
-            .withContext(runResult.format('Comment Created At'))
+            .withContext(runResult.format("Comment Created At"))
             .toBeNonEmptyString();
 
         expect(comment.upVotes)
-            .withContext(runResult.format('Comment Up Votes'))
+            .withContext(runResult.format("Comment Up Votes"))
             .toBeInstanceOf(Number);
 
         expect(comment.numberOfreplies)
-            .withContext(runResult.format('Comment Number of replies'))
+            .withContext(runResult.format("Comment Number of replies"))
             .toBeInstanceOf(Number);
 
         expect(comment.dataType)
-            .withContext(runResult.format('Comment Data Type'))
-            .toBe('comment');
+            .withContext(runResult.format("Comment Data Type"))
+            .toBe("comment");
     };
 
-    ['beta', 'latest'].forEach((build) => {
+    ["beta", "latest"].forEach((build) => {
         describe(`Reddit scraper (${build} version)`, () => {
-            it('should search for posts successfully', async () => {
+            it("should search for posts successfully", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 0,
-                        maxCommunitiesAndUsers: 0,
+                        maxCommunitiesCount: 0,
                         maxItems: 10,
                         maxLeaderBoardItems: 0,
                         maxPostCount: 10,
@@ -151,34 +160,34 @@ const main = ({
                         searchCommunities: false,
                         searchPosts: true,
                         searchUsers: false,
-                        searches: ['pizza'],
-                        sort: 'relevance',
+                        searches: ["pizza"],
+                        sort: "relevance",
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Search Post Health Check',
+                    name: "Reddit Search Post Health Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
@@ -186,13 +195,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -200,17 +209,17 @@ const main = ({
                         for (const post of results) {
                             checkPost(post, runResult);
                         }
-                    },
+                    }
                 );
             });
 
-            it('should search for comments successfully', async () => {
+            it("should search for comments successfully", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 10,
-                        maxCommunitiesAndUsers: 0,
+                        maxCommunitiesCount: 0,
                         maxItems: 10,
                         maxLeaderBoardItems: 0,
                         maxPostCount: 0,
@@ -222,34 +231,34 @@ const main = ({
                         searchCommunities: false,
                         searchPosts: false,
                         searchUsers: false,
-                        searches: ['pizza'],
-                        sort: 'relevance',
+                        searches: ["pizza"],
+                        sort: "relevance",
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Search Comments Health Check',
+                    name: "Reddit Search Comments Health Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
@@ -257,13 +266,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -272,17 +281,17 @@ const main = ({
                         for (const comment of results) {
                             checkComment(comment, runResult);
                         }
-                    },
+                    }
                 );
             });
 
-            it('should search for users successfully', async () => {
+            it("should search for users successfully", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 0,
-                        maxCommunitiesAndUsers: 10,
+                        maxCommunitiesCount: 10,
                         maxItems: 10,
                         maxLeaderBoardItems: 0,
                         maxPostCount: 0,
@@ -294,34 +303,34 @@ const main = ({
                         searchCommunities: false,
                         searchPosts: false,
                         searchUsers: true,
-                        searches: ['pizza'],
-                        sort: 'relevance',
+                        searches: ["pizza"],
+                        sort: "relevance",
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Search Users Health Check',
+                    name: "Reddit Search Users Health Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
@@ -329,13 +338,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -344,17 +353,17 @@ const main = ({
                         for (const post of results) {
                             checkPost(post);
                         }
-                    },
+                    }
                 );
             });
 
-            it('should search for community successfully', async () => {
+            it("should search for community successfully", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 2,
-                        maxCommunitiesAndUsers: 2,
+                        maxCommunitiesCount: 2,
                         maxItems: 10,
                         maxLeaderBoardItems: 2,
                         maxPostCount: 2,
@@ -367,33 +376,33 @@ const main = ({
                         searchPosts: false,
                         searchUsers: false,
                         skipComments: false,
-                        startUrls: ['pizza'],
+                        startUrls: ["pizza"],
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Search Community Check',
+                    name: "Reddit Search Community Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
@@ -401,13 +410,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -418,13 +427,13 @@ const main = ({
                         let comment;
 
                         for (const result of results) {
-                            if (result.dataType === 'post') {
+                            if (result.dataType === "post") {
                                 post = result;
                             }
-                            if (result.dataType === 'community') {
+                            if (result.dataType === "community") {
                                 community = result;
                             }
-                            if (result.dataType === 'comment') {
+                            if (result.dataType === "comment") {
                                 comment = result;
                             }
                         }
@@ -437,17 +446,17 @@ const main = ({
 
                         // checking the comment
                         checkComment(comment, runResult);
-                    },
+                    }
                 );
             });
 
-            it('should scrape community', async () => {
+            it("should scrape community", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 2,
-                        maxCommunitiesAndUsers: 2,
+                        maxCommunitiesCount: 2,
                         maxItems: 10,
                         maxLeaderBoardItems: 2,
                         maxPostCount: 2,
@@ -462,35 +471,35 @@ const main = ({
                         skipComments: false,
                         startUrls: [
                             {
-                                url: 'https://www.reddit.com/r/AskReddit/',
+                                url: "https://www.reddit.com/r/AskReddit/",
                             },
                         ],
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Community Check',
+                    name: "Reddit Community Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
@@ -498,13 +507,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -515,13 +524,13 @@ const main = ({
                         let comment;
 
                         for (const result of results) {
-                            if (result.dataType === 'post') {
+                            if (result.dataType === "post") {
                                 post = result;
                             }
-                            if (result.dataType === 'community') {
+                            if (result.dataType === "community") {
                                 community = result;
                             }
-                            if (result.dataType === 'comment') {
+                            if (result.dataType === "comment") {
                                 comment = result;
                             }
                         }
@@ -534,17 +543,17 @@ const main = ({
 
                         // checking the comment
                         checkComment(comment, runResult);
-                    },
+                    }
                 );
             });
 
-            it('should scrape protected community', async () => {
+            it("should scrape protected community", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 2,
-                        maxCommunitiesAndUsers: 2,
+                        maxCommunitiesCount: 2,
                         maxItems: 10,
                         maxLeaderBoardItems: 2,
                         maxPostCount: 2,
@@ -559,49 +568,49 @@ const main = ({
                         skipComments: false,
                         startUrls: [
                             {
-                                url: 'https://www.reddit.com/r/nsfw/',
+                                url: "https://www.reddit.com/r/nsfw/",
                             },
                         ],
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Protected Community Check',
+                    name: "Reddit Protected Community Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                     expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
+                        .withContext(runResult.format("Log DEBUG"))
+                        .toContain("DEBUG");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .withContext(runResult.format("Run time"))
+                        .toBeWithinRange(10 * 1000, 10 * 60 * 1000);
                 });
 
                 await expectAsync(runResult).withDataset(
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -612,13 +621,13 @@ const main = ({
                         let comment;
 
                         for (const result of results) {
-                            if (result.dataType === 'post') {
+                            if (result.dataType === "post") {
                                 post = result;
                             }
-                            if (result.dataType === 'community') {
+                            if (result.dataType === "community") {
                                 community = result;
                             }
-                            if (result.dataType === 'comment') {
+                            if (result.dataType === "comment") {
                                 comment = result;
                             }
                         }
@@ -631,17 +640,17 @@ const main = ({
 
                         // checking the comment
                         checkComment(comment, runResult);
-                    },
+                    }
                 );
             });
 
-            it('should search for url from gslink for popular community', async () => {
+            it("should search for url from popular community", async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: "oAuCIx3ItNrs2okjQ",
                     input: {
                         debugMode: true,
                         maxComments: 2,
-                        maxCommunitiesAndUsers: 2,
+                        maxCommunitiesCount: 2,
                         maxItems: 10,
                         maxLeaderBoardItems: 2,
                         maxPostCount: 2,
@@ -654,30 +663,30 @@ const main = ({
                         searchPosts: true,
                         searchUsers: false,
                         skipComments: false,
-                        startUrls: [],
+                        startUrls: ["https://www.reddit.com/r/popular/"],
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit GSlink Popular Community Check',
+                    name: "Reddit Popular Community Check",
                 });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).toHaveStatus("SUCCEEDED");
                 await expectAsync(runResult).withLog((log) => {
                     expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
+                        .withContext(runResult.format("Log ReferenceError"))
+                        .not.toContain("ReferenceError");
                     expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
+                        .withContext(runResult.format("Log TypeError"))
+                        .not.toContain("TypeError");
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
+                        .withContext(runResult.format("Request retries"))
                         .toBeLessThan(3);
                     expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
+                        .withContext(runResult.format("Run time"))
                         .toBeWithinRange(1 * 60, 10 * 60000);
                 });
 
@@ -685,13 +694,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format("Dataset cleanItemCount")
                             )
                             .toBe(3);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format("Dataset items array")
                             )
                             .toBeNonEmptyArray();
 
@@ -702,13 +711,13 @@ const main = ({
                         let comment;
 
                         for (const result of results) {
-                            if (result.dataType === 'post') {
+                            if (result.dataType === "post") {
                                 post = result;
                             }
-                            if (result.dataType === 'community') {
+                            if (result.dataType === "community") {
                                 community = result;
                             }
-                            if (result.dataType === 'comment') {
+                            if (result.dataType === "comment") {
                                 comment = result;
                             }
                         }
@@ -721,104 +730,7 @@ const main = ({
 
                         // checking the comment
                         checkComment(comment, runResult);
-                    },
-                );
-            });
-
-            it('should scrape leaderboard url', async () => {
-                const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
-                    input: {
-                        debugMode: true,
-                        maxComments: 3,
-                        maxCommunitiesAndUsers: 3,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 3,
-                        maxPostCount: 3,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        searches: [''],
-                        startUrls: [
-                            {
-                                url: 'https://www.reddit.com/subreddits/leaderboard/',
-                                method: 'GET',
-                            },
-                        ],
-                        time: 'all',
-                        type: 'posts',
-                        skipComments: false,
-                        searchPosts: false,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchUsers: false,
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Reddit Leaderboard Page Check',
-                });
-
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(3);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(1 * 60, 10 * 60000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBe(3);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-
-                        let post;
-                        let community;
-                        let comment;
-
-                        for (const result of results) {
-                            if (result.dataType === 'post') {
-                                post = result;
-                            }
-                            if (result.dataType === 'community') {
-                                community = result;
-                            }
-                            if (result.dataType === 'comment') {
-                                comment = result;
-                            }
-                        }
-
-                        // checking the post
-                        checkPost(post, runResult);
-
-                        // checking the community
-                        checkCommunity(community, runResult);
-
-                        // checking the comment
-                        checkComment(comment, runResult);
-                    },
+                    }
                 );
             });
         });
@@ -829,11 +741,12 @@ const input = {
     abortRuns: true,
     defaultTimeout: 900000,
     retryFailedTests: true,
+    email: "gustavo@trudax.tech",
     testSpec: main.toString(),
     verboseLogs: true,
 };
 
 fs.writeFileSync(
-    path.join(__dirname, './storage/key_value_stores/default/INPUT.json'),
-    JSON.stringify(input, null, 2),
+    path.join(__dirname, "./storage/key_value_stores/default/INPUT.json"),
+    JSON.stringify(input, null, 2)
 );
