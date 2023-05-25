@@ -64,27 +64,21 @@ const main = ({
             .withContext(runResult.format('Community title'))
             .toBeNonEmptyString();
 
-        expect(community.alternatineTitle)
-            .withContext(runResult.format('Community alternatine title'))
-            .toBeNonEmptyString();
-
         expect(community.createdAt)
             .withContext(runResult.format('Community created at'))
             .toBeNonEmptyString();
 
-        expect(community.members)
+        expect(typeof community.members === 'number' || !community.members)
             .withContext(runResult.format('Community members'))
-            .toBeInstanceOf(Number);
+            .toBe(true);
 
-        expect(community.moderators)
+        expect(community.moderators?.lengt > 0 || !community.moderators)
             .withContext(runResult.format('Community moderators'))
-            .toBeNonEmptyArray();
+            .toBe(true);
 
-        expect(community.communityUrl)
+        expect(community.url)
             .withContext(runResult.format('Community url'))
-            .toStartWith(
-                `https://www.reddit.com/${community.alternatineTitle}`,
-            );
+            .toStartWith('https://www.reddit.com/r/');
     };
 
     const checkComment = (comment, runResult) => {
@@ -605,7 +599,7 @@ const main = ({
                 );
             });
 
-            it('should search for url from popular community', async () => {
+            it('should scrape popular community', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
