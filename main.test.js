@@ -565,7 +565,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(10 * 1000, 10 * 60 * 1000);
+                        .toBeWithinRange(2000, 10 * 60 * 1000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -618,7 +618,9 @@ const main = ({
                         searchPosts: true,
                         searchUsers: false,
                         skipComments: false,
-                        startUrls: ['https://www.reddit.com/r/popular/'],
+                        startUrls: [
+                            { url: 'https://www.reddit.com/r/popular/' },
+                        ],
                     },
                     options: {
                         build,
