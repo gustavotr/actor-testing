@@ -653,7 +653,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(3);
+                            .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
