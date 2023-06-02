@@ -134,6 +134,47 @@ const main = ({
             .toBe('comment');
     };
 
+    const checkUser = (user, runResult) => {
+        if (user.dataType !== 'user') {
+            return;
+        }
+        expect(user.id)
+            .withContext(runResult.format('User Id'))
+            .toBeNonEmptyString();
+
+        expect(user.url)
+            .withContext(runResult.format('User Url'))
+            .toStartWith('https://www.reddit.com/user/');
+
+        expect(user.username)
+            .withContext(runResult.format('User Username'))
+            .toBeNonEmptyString();
+
+        expect(user.userIcon)
+            .withContext(runResult.format('User Icon'))
+            .toBeNonEmptyString();
+
+        expect(user.karma)
+            .withContext(runResult.format('User Karma'))
+            .toBeNonEmptyNumber();
+
+        expect(user.createdAt)
+            .withContext(runResult.format('User Created At'))
+            .toBeNonEmptyString();
+
+        expect(user.scrapedAt)
+            .withContext(runResult.format('User Scraped At'))
+            .toBeNonEmptyString();
+
+        expect(user.over18)
+            .withContext(runResult.format('User Over 18'))
+            .toBeInstanceOf(Boolean);
+
+        expect(user.dataType)
+            .withContext(runResult.format('User Data Type'))
+            .toBe('comment');
+    };
+
     ['beta', 'latest'].forEach((build) => {
         describe(`Reddit scraper (${build} version)`, () => {
             it('should search for posts successfully', async () => {
@@ -676,6 +717,93 @@ const main = ({
                         }
                     },
                 );
+            });
+        });
+
+        it('should scrape a user a user post and a user comment', async () => {
+            const runResult = await run({
+                actorId: 'oAuCIx3ItNrs2okjQ',
+                input: {
+                    debugMode: true,
+                    maxComments: 1,
+                    maxCommunitiesAndUsers: 5000000,
+                    maxItems: 3,
+                    maxLeaderBoardItems: 5000000,
+                    maxPostCount: 1,
+                    proxy: {
+                        useApifyProxy: true,
+                    },
+                    scrollTimeout: 40,
+                    searchComments: false,
+                    searchCommunities: false,
+                    searchPosts: true,
+                    searchUsers: false,
+                    paid: true,
+                    startUrls: [
+                        {
+                            url: 'https://www.reddit.com/user/BrineOfTheTimes/',
+                        },
+                        {
+                            url: 'https://www.reddit.com/user/BrineOfTheTimes/submitted',
+                        },
+                        {
+                            url: 'https://www.reddit.com/user/BrineOfTheTimes/comments',
+                        },
+                    ],
+                },
+                options: {
+                    build,
+                },
+                name: 'Reddit User Check',
+            });
+
+            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+            await expectAsync(runResult).withLog((log) => {
+                expect(log)
+                    .withContext(runResult.format('Log ReferenceError'))
+                    .not.toContain('ReferenceError');
+                expect(log)
+                    .withContext(runResult.format('Log TypeError'))
+                    .not.toContain('TypeError');
+                expect(log)
+                    .withContext(runResult.format('Log DEBUG'))
+                    .toContain('DEBUG');
+            });
+
+            await expectAsync(runResult).withStatistics((stats) => {
+                expect(stats.requestsRetries)
+                    .withContext(runResult.format('Request retries'))
+                    .toBeLessThan(5);
+                expect(stats.crawlerRuntimeMillis)
+                    .withContext(runResult.format('Run time'))
+                    .toBeWithinRange(1000, 10 * 60000);
+            });
+
+            await expectAsync(runResult).withDataset(({ dataset, info }) => {
+                expect(info.cleanItemCount)
+                    .withContext(runResult.format('Dataset cleanItemCount'))
+                    .toBe(3);
+
+                expect(dataset.items)
+                    .withContext(runResult.format('Dataset items array'))
+                    .toBeNonEmptyArray();
+
+                const results = dataset.items;
+
+                for (const result of results) {
+                    if (result.dataType === 'post') {
+                        checkPost(result, runResult);
+                    }
+                    if (result.dataType === 'community') {
+                        checkCommunity(result, runResult);
+                    }
+                    if (result.dataType === 'comment') {
+                        checkComment(result, runResult);
+                    }
+                    if (result.dataType === 'user') {
+                        checkUser(result, runResult);
+                    }
+                }
             });
         });
     });
