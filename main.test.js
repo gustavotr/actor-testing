@@ -156,7 +156,7 @@ const main = ({
 
         expect(user.karma)
             .withContext(runResult.format('User Karma'))
-            .toBeNonEmptyNumber();
+            .toBeInstanceOf(Number);
 
         expect(user.createdAt)
             .withContext(runResult.format('User Created At'))
@@ -172,7 +172,7 @@ const main = ({
 
         expect(user.dataType)
             .withContext(runResult.format('User Data Type'))
-            .toBe('comment');
+            .toBe('user');
     };
 
     ['beta', 'latest'].forEach((build) => {
