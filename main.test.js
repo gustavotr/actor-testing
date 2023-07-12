@@ -11,496 +11,122 @@ const main = ({
     moment,
     describe,
 }) => {
-    const checkPost = (post, runResult) => {
-        if (post.dataType !== 'post') {
-            return;
-        }
-        expect(post.id)
-            .withContext(runResult.format('Post Id'))
+    const checkProfile = (profile, runResult) => {
+        expect(profile.name)
+            .withContext(runResult.format('Profile Name'))
             .toBeNonEmptyString();
 
-        expect(post.parsedId)
-            .withContext(runResult.format('Post Parsed Id'))
+        expect(profile.location)
+            .withContext(runResult.format('Profile Location'))
             .toBeNonEmptyString();
 
-        expect(post.url)
-            .withContext(runResult.format('Post Url'))
-            .toStartWith('https://www.reddit.com/r/');
-
-        expect(post.username)
-            .withContext(runResult.format('Post Username'))
+        expect(profile.locality)
+            .withContext(runResult.format('Profile Locality'))
             .toBeNonEmptyString();
 
-        expect(post.title)
-            .withContext(runResult.format('Post Title'))
+        expect(profile.country)
+            .withContext(runResult.format('Profile Country'))
             .toBeNonEmptyString();
 
-        expect(post.communityName)
-            .withContext(runResult.format('Post Community Name'))
+        expect(profile.title)
+            .withContext(runResult.format('Profile Title'))
             .toBeNonEmptyString();
 
-        expect(post.parsedCommunityName)
-            .withContext(runResult.format('Post Parsed Community Name'))
+        expect(profile.jobSuccess)
+            .withContext(runResult.format('Profile Job Success'))
             .toBeNonEmptyString();
 
-        expect(typeof post.body === 'string' || !post.body)
-            .withContext(runResult.format('Post Body'))
-            .toBe(true);
-
-        expect(post.createdAt)
-            .withContext(runResult.format('Post Created At'))
+        expect(profile.hourlyRate)
+            .withContext(runResult.format('Profile Hourly Rate'))
             .toBeNonEmptyString();
 
-        expect(post.dataType)
-            .withContext(runResult.format('Post Data Type'))
-            .toBe('post');
+        expect(profile.totalHours)
+            .withContext(runResult.format('Profile Total Hours'))
+            .toBeNonEmptyString();
+
+        expect(profile.totalJobs)
+            .withContext(runResult.format('Profile Total Jobs'))
+            .toBeNonEmptyString();
+
+        expect(profile.skills)
+            .withContext(runResult.format('Profile Skills'))
+            .toBeNonEmptyString();
+
+        expect(profile.profileUrl)
+            .withContext(runResult.format('Profile Url'))
+            .toStartWith('https://www.upwork.com/freelancers/~');
     };
 
-    const checkCommunity = (community, runResult) => {
-        if (community.dataType !== 'community') {
-            return;
-        }
-        expect(community.title)
-            .withContext(runResult.format('Community title'))
+    const checkJob = (job, runResult) => {
+        expect(job.title)
+            .withContext(runResult.format('Job title'))
             .toBeNonEmptyString();
 
-        expect(community.createdAt)
-            .withContext(runResult.format('Community created at'))
+        expect(job.description)
+            .withContext(runResult.format('Job Description'))
             .toBeNonEmptyString();
 
-        expect(typeof community.members === 'number' || !community.members)
-            .withContext(runResult.format('Community members'))
-            .toBe(true);
-
-        expect(community.moderators?.lengt > 0 || !community.moderators)
-            .withContext(runResult.format('Community moderators'))
-            .toBe(true);
-
-        expect(community.url)
-            .withContext(runResult.format('Community url'))
-            .toStartWith('https://www.reddit.com/r/');
-    };
-
-    const checkComment = (comment, runResult) => {
-        if (comment.dataType !== 'comment') {
-            return;
-        }
-        expect(comment.id)
-            .withContext(runResult.format('Comment Id'))
+        expect(job.jobType)
+            .withContext(runResult.format('Job Type'))
             .toBeNonEmptyString();
 
-        expect(comment.parsedId)
-            .withContext(runResult.format('Comment Parsed Id'))
+        expect(job.contractorTier)
+            .withContext(runResult.format('Job Contractor Tier'))
             .toBeNonEmptyString();
 
-        expect(comment.url)
-            .withContext(runResult.format('Comment Url'))
-            .toStartWith('https://www.reddit.com/r/');
-
-        expect(comment.parentId)
-            .withContext(runResult.format('Comment Parent Id'))
+        expect(job.skills)
+            .withContext(runResult.format('Job Skills'))
             .toBeNonEmptyString();
 
-        expect(comment.username)
-            .withContext(runResult.format('Comment Username'))
+        expect(job.duration)
+            .withContext(runResult.format('Job Duration'))
             .toBeNonEmptyString();
 
-        expect(comment.category)
-            .withContext(runResult.format('Comment Category'))
+        expect(job.engagement)
+            .withContext(runResult.format('Job Engagement'))
             .toBeNonEmptyString();
 
-        expect(comment.communityName)
-            .withContext(runResult.format('Comment Community Name'))
+        expect(job.createdAt)
+            .withContext(runResult.format('Job Created At'))
             .toBeNonEmptyString();
 
-        expect(comment.body)
-            .withContext(runResult.format('Comment Body'))
+        expect(job.scrapedAt)
+            .withContext(runResult.format('Job Scraped At'))
             .toBeNonEmptyString();
 
-        expect(comment.createdAt)
-            .withContext(runResult.format('Comment Created At'))
-            .toBeNonEmptyString();
+        expect(job.url)
+            .withContext(runResult.format('Job Url'))
+            .toStartWith('https://www.upwork.com/freelance-jobs/apply/');
 
-        expect(comment.upVotes)
-            .withContext(runResult.format('Comment Up Votes'))
-            .toBeInstanceOf(Number);
-
-        expect(comment.numberOfreplies)
-            .withContext(runResult.format('Comment Number of replies'))
-            .toBeInstanceOf(Number);
-
-        expect(comment.dataType)
-            .withContext(runResult.format('Comment Data Type'))
-            .toBe('comment');
-    };
-
-    const checkUser = (user, runResult) => {
-        if (user.dataType !== 'user') {
-            return;
-        }
-        expect(user.id)
-            .withContext(runResult.format('User Id'))
-            .toBeNonEmptyString();
-
-        expect(user.url)
-            .withContext(runResult.format('User Url'))
-            .toStartWith('https://www.reddit.com/user/');
-
-        expect(user.username)
-            .withContext(runResult.format('User Username'))
-            .toBeNonEmptyString();
-
-        expect(user.userIcon)
-            .withContext(runResult.format('User Icon'))
-            .toBeNonEmptyString();
-
-        expect(user.karma)
-            .withContext(runResult.format('User Karma'))
-            .toBeInstanceOf(Number);
-
-        expect(user.createdAt)
-            .withContext(runResult.format('User Created At'))
-            .toBeNonEmptyString();
-
-        expect(user.scrapedAt)
-            .withContext(runResult.format('User Scraped At'))
-            .toBeNonEmptyString();
-
-        expect(user.over18)
-            .withContext(runResult.format('User Over 18'))
-            .toBeInstanceOf(Boolean);
-
-        expect(user.dataType)
-            .withContext(runResult.format('User Data Type'))
-            .toBe('user');
+        expect(job.applyUrl)
+            .withContext(runResult.format('Job Apply Url'))
+            .toStartWith('https://www.upwork.com/ab/proposals/job/~');
     };
 
     ['beta', 'latest'].forEach((build) => {
-        describe(`Reddit scraper (${build} version)`, () => {
-            it('should search for posts successfully', async () => {
+        describe(`Upwork scraper (${build} version)`, () => {
+            it('should scrape hire url', async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: 'QO4eKupwzgl5yAkKY',
                     input: {
                         debugMode: true,
-                        maxComments: 0,
-                        maxCommunitiesCount: 0,
+                        extendOutputFunction:
+                            'async () => {\n  return { timestamp: Date.now() }\n\n}',
                         maxItems: 10,
-                        maxLeaderBoardItems: 0,
-                        maxPostCount: 10,
                         proxy: {
                             useApifyProxy: true,
                         },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchPosts: true,
-                        searchUsers: false,
-                        searches: ['pizza'],
-                        sort: 'relevance',
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Reddit Search Post Health Check',
-                });
-
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBe(10);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-                        for (const post of results) {
-                            checkPost(post, runResult);
-                        }
-                    },
-                );
-            });
-
-            it('should search for comments successfully', async () => {
-                const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
-                    input: {
-                        debugMode: true,
-                        maxComments: 10,
-                        maxCommunitiesCount: 0,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 0,
-                        maxPostCount: 0,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        scrollTimeout: 40,
-                        searchComments: true,
-                        searchCommunities: false,
-                        searchPosts: false,
-                        searchUsers: false,
-                        searches: ['pizza'],
-                        sort: 'relevance',
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Reddit Search Comments Health Check',
-                });
-
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBeWithinRange(1, 10);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-
-                        for (const comment of results) {
-                            checkComment(comment, runResult);
-                        }
-                    },
-                );
-            });
-
-            it('should search for users successfully', async () => {
-                const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
-                    input: {
-                        debugMode: true,
-                        maxComments: 0,
-                        maxCommunitiesCount: 10,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 0,
-                        maxPostCount: 0,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchPosts: false,
-                        searchUsers: true,
-                        searches: ['pizza'],
-                        sort: 'relevance',
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Reddit Search Users Health Check',
-                });
-
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBeWithinRange(1, 10);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-
-                        for (const post of results) {
-                            checkPost(post);
-                        }
-                    },
-                );
-            });
-
-            it('should search for community successfully', async () => {
-                const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
-                    input: {
-                        debugMode: true,
-                        maxComments: 2,
-                        maxCommunitiesCount: 2,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 2,
-                        maxPostCount: 2,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: true,
-                        searchPosts: false,
-                        searchUsers: false,
-                        skipComments: false,
-                        searches: ['pizza'],
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Reddit Search Community Check',
-                });
-
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBe(2);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-
-                        for (const result of results) {
-                            if (result.dataType === 'post') {
-                                checkPost(result, runResult);
-                            }
-                            if (result.dataType === 'community') {
-                                checkCommunity(result, runResult);
-                            }
-                            if (result.dataType === 'comment') {
-                                checkComment(result, runResult);
-                            }
-                        }
-                    },
-                );
-            });
-
-            it('should scrape community', async () => {
-                const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
-                    input: {
-                        debugMode: true,
-                        maxComments: 2,
-                        maxCommunitiesCount: 2,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 2,
-                        maxPostCount: 2,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchPosts: true,
-                        searchUsers: false,
-                        skipComments: false,
+                        rhrs: false,
+                        searchFor: 'talent',
                         startUrls: [
-                            {
-                                url: 'https://www.reddit.com/r/AskReddit/',
-                            },
+                            'https://www.upwork.com/hire/blockchain-developers/',
                         ],
+                        useBuiltInSearch: false,
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Community Check',
+                    name: 'Upwork Hire URL Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -529,62 +155,46 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format('Dataset cleanItemCount')
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format('Dataset items array')
                             )
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-
-                        for (const result of results) {
-                            if (result.dataType === 'post') {
-                                checkPost(result, runResult);
-                            }
-                            if (result.dataType === 'community') {
-                                checkCommunity(result, runResult);
-                            }
-                            if (result.dataType === 'comment') {
-                                checkComment(result, runResult);
-                            }
+                        for (const profile of results) {
+                            checkProfile(profile, runResult);
                         }
-                    },
+                    }
                 );
             });
 
-            it('should scrape protected community', async () => {
+            it('should search for profiles using built in search', async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: 'QO4eKupwzgl5yAkKY',
                     input: {
+                        category: '531770282580668419',
                         debugMode: true,
-                        maxComments: 2,
-                        maxCommunitiesCount: 2,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 2,
-                        maxPostCount: 2,
+                        extendOutputFunction:
+                            'async () => {\n  return { timestamp: Date.now() }\n\n}',
+                        maxItems: 5,
                         proxy: {
                             useApifyProxy: true,
                         },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchPosts: true,
-                        searchUsers: false,
-                        skipComments: false,
-                        startUrls: [
-                            {
-                                url: 'https://www.reddit.com/r/nsfw/',
-                            },
-                        ],
+                        rhrs: false,
+                        search: 'PHP',
+                        searchFor: 'talent',
+                        startUrls: ['https://www.upwork.com/search/profiles/'],
+                        useBuiltInSearch: true,
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Protected Community Check',
+                    name: 'Upwork Search Profile Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -606,67 +216,51 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(2000, 10 * 60 * 1000);
+                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format('Dataset cleanItemCount')
                             )
-                            .toBe(10);
+                            .toBe(5);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format('Dataset items array')
                             )
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-
-                        for (const result of results) {
-                            if (result.dataType === 'post') {
-                                checkPost(result, runResult);
-                            }
-                            if (result.dataType === 'community') {
-                                checkCommunity(result, runResult);
-                            }
-                            if (result.dataType === 'comment') {
-                                checkComment(result, runResult);
-                            }
+                        for (const profile of results) {
+                            checkProfile(profile, runResult);
                         }
-                    },
+                    }
                 );
             });
 
-            it('should scrape popular community', async () => {
+            it('should search for jobs using built in search', async () => {
                 const runResult = await run({
-                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    actorId: 'QO4eKupwzgl5yAkKY',
                     input: {
                         debugMode: true,
-                        maxComments: 2,
-                        maxCommunitiesCount: 2,
-                        maxItems: 10,
-                        maxLeaderBoardItems: 2,
-                        maxPostCount: 2,
+                        extendOutputFunction:
+                            'async () => {\n  return { timestamp: Date.now() }\n\n}',
+                        maxItems: 5,
                         proxy: {
                             useApifyProxy: true,
                         },
-                        scrollTimeout: 40,
-                        searchComments: false,
-                        searchCommunities: false,
-                        searchPosts: true,
-                        searchUsers: false,
-                        skipComments: false,
-                        startUrls: [
-                            { url: 'https://www.reddit.com/r/popular/' },
-                        ],
+                        search: 'javascript',
+                        searchFor: 'job',
+                        startUrls: ['https://www.upwork.com/search/profiles/'],
+                        useBuiltInSearch: true,
                     },
                     options: {
                         build,
                     },
-                    name: 'Reddit Popular Community Check',
+                    name: 'Upwork Search Job Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -677,133 +271,40 @@ const main = ({
                     expect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
                         .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(3);
+                        .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(1 * 60, 10 * 60000);
+                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount'),
+                                runResult.format('Dataset cleanItemCount')
                             )
-                            .toBe(10);
+                            .toBe(5);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array'),
+                                runResult.format('Dataset items array')
                             )
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-
-                        for (const result of results) {
-                            if (result.dataType === 'post') {
-                                checkPost(result, runResult);
-                            }
-                            if (result.dataType === 'community') {
-                                checkCommunity(result, runResult);
-                            }
-                            if (result.dataType === 'comment') {
-                                checkComment(result, runResult);
-                            }
+                        for (const job of results) {
+                            checkJob(job, runResult);
                         }
-                    },
+                    }
                 );
-            });
-        });
-
-        it('should scrape a user a user post and a user comment', async () => {
-            const runResult = await run({
-                actorId: 'oAuCIx3ItNrs2okjQ',
-                input: {
-                    debugMode: true,
-                    maxComments: 1,
-                    maxCommunitiesAndUsers: 5000000,
-                    maxItems: 3,
-                    maxLeaderBoardItems: 5000000,
-                    maxPostCount: 1,
-                    proxy: {
-                        useApifyProxy: true,
-                    },
-                    scrollTimeout: 40,
-                    searchComments: false,
-                    searchCommunities: false,
-                    searchPosts: true,
-                    searchUsers: false,
-                    paid: true,
-                    startUrls: [
-                        {
-                            url: 'https://www.reddit.com/user/BrineOfTheTimes/',
-                        },
-                        {
-                            url: 'https://www.reddit.com/user/BrineOfTheTimes/submitted',
-                        },
-                        {
-                            url: 'https://www.reddit.com/user/BrineOfTheTimes/comments',
-                        },
-                    ],
-                },
-                options: {
-                    build,
-                },
-                name: 'Reddit User Check',
-            });
-
-            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-            await expectAsync(runResult).withLog((log) => {
-                expect(log)
-                    .withContext(runResult.format('Log ReferenceError'))
-                    .not.toContain('ReferenceError');
-                expect(log)
-                    .withContext(runResult.format('Log TypeError'))
-                    .not.toContain('TypeError');
-                expect(log)
-                    .withContext(runResult.format('Log DEBUG'))
-                    .toContain('DEBUG');
-            });
-
-            await expectAsync(runResult).withStatistics((stats) => {
-                expect(stats.requestsRetries)
-                    .withContext(runResult.format('Request retries'))
-                    .toBeLessThan(5);
-                expect(stats.crawlerRuntimeMillis)
-                    .withContext(runResult.format('Run time'))
-                    .toBeWithinRange(1000, 10 * 60000);
-            });
-
-            await expectAsync(runResult).withDataset(({ dataset, info }) => {
-                expect(info.cleanItemCount)
-                    .withContext(runResult.format('Dataset cleanItemCount'))
-                    .toBe(3);
-
-                expect(dataset.items)
-                    .withContext(runResult.format('Dataset items array'))
-                    .toBeNonEmptyArray();
-
-                const results = dataset.items;
-
-                for (const result of results) {
-                    if (result.dataType === 'post') {
-                        checkPost(result, runResult);
-                    }
-                    if (result.dataType === 'community') {
-                        checkCommunity(result, runResult);
-                    }
-                    if (result.dataType === 'comment') {
-                        checkComment(result, runResult);
-                    }
-                    if (result.dataType === 'user') {
-                        checkUser(result, runResult);
-                    }
-                }
             });
         });
     });
@@ -820,5 +321,5 @@ const input = {
 
 fs.writeFileSync(
     path.join(__dirname, './storage/key_value_stores/default/INPUT.json'),
-    JSON.stringify(input, null, 2),
+    JSON.stringify(input, null, 2)
 );
