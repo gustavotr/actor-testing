@@ -14,76 +14,69 @@ const main = ({
     const checkProduct = (product, runResult) => {
         expect(product.id)
             .withContext(runResult.format('Product ID'))
-            .toBeNonEmptyString();
+            .toBeNonEmptyNumber();
 
         expect(product.name)
             .withContext(runResult.format('Product Name'))
+            .toBeNonEmptyString();
+
+        expect(product.url)
+            .withContext(runResult.format('Product Url'))
+            .toStartWith('https://www.macys.com/');
+
+        expect(product.rating)
+            .withContext(runResult.format('Product Rating'))
+            .toBeNonEmptyString();
+
+        expect(product.brand)
+            .withContext(runResult.format('Product Brand'))
+            .toBeNonEmptyString();
+
+        expect(product.images)
+            .withContext(runResult.format('Product Images'))
+            .toBeNonEmptyArray();
+
+        expect(product.category)
+            .withContext(runResult.format('Product Category'))
             .toBeNonEmptyString();
 
         expect(product.description)
             .withContext(runResult.format('Product Description'))
             .toBeNonEmptyString();
 
-        expect(product.url)
-            .withContext(runResult.format('Product Url'))
-            .toStartWith('https://www.nordstrom.com/');
+        expect(product.details)
+            .withContext(runResult.format('Product Details'))
+            .toBeNonEmptyArray();
 
-        expect(product.brand)
-            .withContext(runResult.format('Product Brand'))
-            .toBeNonEmptyString();
-
-        expect(product.rating)
-            .withContext(runResult.format('Product Rating'))
-            .toBeNonEmptyString();
-
-        expect(product.reviewCount)
-            .withContext(runResult.format('Product Review Count'))
-            .toBeNonEmptyString();
-
-        expect(product.availability)
-            .withContext(runResult.format('Product Availability'))
-            .toBeNonEmptyString();
-
-        expect(product.currencyCode)
-            .withContext(runResult.format('Product Currency Code'))
-            .toBeNonEmptyString();
-
-        expect(product.price)
-            .withContext(runResult.format('Product Price'))
-            .toBeNonEmptyString();
-
-        expect(product.sizes)
-            .withContext(runResult.format('Product Sizes'))
+        expect(product.offers)
+            .withContext(runResult.format('Product Offers'))
             .toBeNonEmptyArray();
 
         expect(product.colors)
             .withContext(runResult.format('Product Colors'))
             .toBeNonEmptyArray();
-
-        expect(product.scrappedAt)
-            .withContext(runResult.format('Product Scrapped At'))
-            .toBeNonEmptyString();
     };
 
     ['beta', 'latest'].forEach((build) => {
-        describe(`Nordstrom scraper (${build} version)`, () => {
-            it('should search for jeans in Italy', async () => {
+        describe(`Macys scraper (${build} version)`, () => {
+            it('should search for jeans', async () => {
                 const runResult = await run({
-                    actorId: '6aR43uctzkv89eGJy',
+                    actorId: 'WZAd8MxvZpRpWdZTa',
                     input: {
-                        country: 'Italy',
-                        debugMode: true,
-                        extendOutputFunction: '\n',
                         maxItems: 10,
+                        search: 'Jeans',
                         proxy: {
                             useApifyProxy: true,
                         },
-                        search: 'Jeans',
+                        apiData: false,
+                        debugMode: true,
+                        outputStoreName: '',
+                        checkDuplicates: false,
                     },
                     options: {
                         build,
                     },
-                    name: 'Nordstrom Search Health Check',
+                    name: 'Macys Search Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
