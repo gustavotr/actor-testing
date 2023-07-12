@@ -14,7 +14,7 @@ const main = ({
     const checkProduct = (product, runResult) => {
         expect(product.id)
             .withContext(runResult.format('Product ID'))
-            .toBeNonEmptyNumber();
+            .toBeInstanceOf(Number);
 
         expect(product.name)
             .withContext(runResult.format('Product Name'))
