@@ -313,7 +313,7 @@ const main = ({
 const input = {
     abortRuns: true,
     defaultTimeout: 900000,
-    retryFailedTests: true,
+    retryFailedTests: false,
     email: 'gustavo@trudax.tech',
     testSpec: main.toString(),
     verboseLogs: true,
