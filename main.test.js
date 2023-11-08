@@ -12,78 +12,70 @@ const main = ({
     describe,
 }) => {
     const checkProduct = (product, runResult) => {
-        expect(product.id)
-            .withContext(runResult.format('Product ID'))
-            .toBeNonEmptyString();
-
-        expect(product.name)
+        expect(product.title)
             .withContext(runResult.format('Product Name'))
-            .toBeNonEmptyString();
-
-        expect(product.description)
-            .withContext(runResult.format('Product Description'))
-            .toBeNonEmptyString();
-
-        expect(product.url)
-            .withContext(runResult.format('Product Url'))
-            .toStartWith('https://www.nordstrom.com/');
-
-        expect(product.brand)
-            .withContext(runResult.format('Product Brand'))
-            .toBeNonEmptyString();
-
-        expect(product.rating)
-            .withContext(runResult.format('Product Rating'))
-            .toBeNonEmptyString();
-
-        expect(product.reviewCount)
-            .withContext(runResult.format('Product Review Count'))
-            .toBeNonEmptyString();
-
-        expect(product.availability)
-            .withContext(runResult.format('Product Availability'))
-            .toBeNonEmptyString();
-
-        expect(product.currencyCode)
-            .withContext(runResult.format('Product Currency Code'))
             .toBeNonEmptyString();
 
         expect(product.price)
             .withContext(runResult.format('Product Price'))
             .toBeNonEmptyString();
 
-        expect(product.sizes)
-            .withContext(runResult.format('Product Sizes'))
+        expect(product.rating)
+            .withContext(runResult.format('Product Rating'))
+            .toBeNonEmptyString();
+
+        expect(product.reviews)
+            .withContext(runResult.format('Product Reviews'))
+            .toBeNonEmptyString();
+
+        expect(product.condition)
+            .withContext(runResult.format('Product Condition'))
+            .toBeNonEmptyString();
+
+        expect(product.seller)
+            .withContext(runResult.format('Product Seller'))
+            .toBeNonEmptyString();
+
+        expect(product.quantity_available)
+            .withContext(runResult.format('Product Quantity Available'))
+            .toBeNonEmptyString();
+
+        expect(product.description)
+            .withContext(runResult.format('Product Description'))
+            .toBeNonEmptyString();
+
+        expect(product.images)
+            .withContext(runResult.format('Product Images'))
             .toBeNonEmptyArray();
 
-        expect(product.colors)
-            .withContext(runResult.format('Product Colors'))
-            .toBeNonEmptyArray();
+        expect(product.url)
+            .withContext(runResult.format('Product Url'))
+            .toStartWith('https://www.mercadoli');
 
-        expect(product.scrappedAt)
-            .withContext(runResult.format('Product Scrapped At'))
+        expect(product.currency)
+            .withContext(runResult.format('Product Currency'))
             .toBeNonEmptyString();
     };
 
     ['beta', 'latest'].forEach((build) => {
-        describe(`Nordstrom scraper (${build} version)`, () => {
-            it('should search for jeans in Italy', async () => {
+        describe(`Mercadolibre scraper (${build} version)`, () => {
+            it('should search for smartphone in Mexico', async () => {
                 const runResult = await run({
-                    actorId: '6aR43uctzkv89eGJy',
+                    actorId: 'q0PB9Xd1hjynYAEhi',
                     input: {
-                        country: 'Italy',
                         debugMode: true,
-                        extendOutputFunction: '\n',
-                        maxItems: 10,
+                        domainCode: 'MX',
+                        fastMode: false,
+                        maxItemCount: 5,
                         proxy: {
                             useApifyProxy: true,
                         },
-                        search: 'Jeans',
+                        search: 'smartphone',
                     },
                     options: {
                         build,
                     },
-                    name: 'Nordstrom Search Health Check',
+                    name: 'Mercadolibre Search Health Check',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -105,20 +97,20 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(30 * 1000, 2 * 60 * 1000);
                 });
 
                 await expectAsync(runResult).withDataset(
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount')
+                                runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(5, 7);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array')
+                                runResult.format('Dataset items array'),
                             )
                             .toBeNonEmptyArray();
 
@@ -126,7 +118,7 @@ const main = ({
                         for (const product of results) {
                             checkProduct(product, runResult);
                         }
-                    }
+                    },
                 );
             });
         });
@@ -144,5 +136,5 @@ const input = {
 
 fs.writeFileSync(
     path.join(__dirname, './storage/key_value_stores/default/INPUT.json'),
-    JSON.stringify(input, null, 2)
+    JSON.stringify(input, null, 2),
 );
