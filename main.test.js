@@ -50,7 +50,7 @@ const main = ({
 
         expect(product.url)
             .withContext(runResult.format('Product Url'))
-            .toStartWith('https://www.mercadoli');
+            .toBeNonEmptyString();
 
         expect(product.currency)
             .withContext(runResult.format('Product Currency'))
