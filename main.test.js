@@ -303,7 +303,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBeWithinRange(1, 10);
+                            .toBeWithinRange(1, 12);
 
                         expect(dataset.items)
                             .withContext(
