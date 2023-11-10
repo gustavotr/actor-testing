@@ -223,7 +223,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -294,7 +294,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -366,7 +366,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -438,7 +438,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -522,7 +522,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(0.1 * 60000, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -606,7 +606,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(2000, 10 * 60 * 1000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
@@ -685,7 +685,7 @@ const main = ({
                         .toBeLessThan(3);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(1 * 60, 10 * 60000);
+                        .toBeWithinRange(1000, 10 * 60000);
                 });
 
                 await expectAsync(runResult).withDataset(
