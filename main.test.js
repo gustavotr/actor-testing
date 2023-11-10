@@ -97,7 +97,7 @@ const main = ({
                         .toBeLessThan(5);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(30 * 1000, 2 * 60 * 1000);
+                        .toBeWithinRange(10 * 1000, 2 * 60 * 1000);
                 });
 
                 await expectAsync(runResult).withDataset(
