@@ -35,7 +35,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'wWqrTazDTGHCGTFvw',
                     input: {
-                        debugMode: false,
+                        debugMode: true,
                         location: 'Los Angeles',
                         maxItems: 20,
                         search: 'Dentist',
