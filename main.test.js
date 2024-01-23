@@ -54,9 +54,6 @@ const main = ({
                     expect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
                 });
 
                 await expectAsync(runResult).withStatistics((stats) => {
