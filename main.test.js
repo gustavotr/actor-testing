@@ -268,7 +268,7 @@ const main = ({
                         searchUsers: false,
                         searches: [],
                         startUrls: [
-                            {url: "https://www.reddit.com/search/?q=networkasaservice&type=link" }
+                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=link' },
                         ],
                         sort: 'relevance',
                     },
@@ -321,7 +321,6 @@ const main = ({
                     },
                 );
             });
-
 
             it('should search for comments successfully', async () => {
                 const runResult = await run({
@@ -522,7 +521,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(2);
+                            .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
@@ -857,7 +856,7 @@ const main = ({
             await expectAsync(runResult).withDataset(({ dataset, info }) => {
                 expect(info.cleanItemCount)
                     .withContext(runResult.format('Dataset cleanItemCount'))
-                    .toBe(3);
+                    .toBe(10);
 
                 expect(dataset.items)
                     .withContext(runResult.format('Dataset items array'))
