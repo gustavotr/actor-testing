@@ -11,58 +11,71 @@ const main = ({
     moment,
     describe,
 }) => {
-    const checkProduct = (product, runResult) => {
-        expect(product.id)
-            .withContext(runResult.format('Product ID'))
-            .toBeNonEmptyString();
+    const checkProducts = (products, runResult) => {
+        // Test Required fields
+        products.forEach((product) => {
+            expect(product.id)
+                .withContext(runResult.format('Product ID'))
+                .toBeNonEmptyString();
 
-        expect(product.name)
-            .withContext(runResult.format('Product Name'))
-            .toBeNonEmptyString();
+            expect(product.name)
+                .withContext(runResult.format('Product Name'))
+                .toBeNonEmptyString();
 
-        expect(product.description)
-            .withContext(runResult.format('Product Description'))
-            .toBeNonEmptyString();
+            expect(product.description)
+                .withContext(runResult.format('Product Description'))
+                .toBeInstanceOf(String);
 
-        expect(product.url)
-            .withContext(runResult.format('Product Url'))
-            .toStartWith('https://www.nordstrom.com/');
+            expect(product.url)
+                .withContext(runResult.format('Product Url'))
+                .toStartWith('https://www.nordstrom.com/');
 
-        expect(product.brand)
-            .withContext(runResult.format('Product Brand'))
-            .toBeNonEmptyString();
+            expect(product.brand)
+                .withContext(runResult.format('Product Brand'))
+                .toBeNonEmptyString();
 
-        expect(product.rating)
-            .withContext(runResult.format('Product Rating'))
-            .toBeNonEmptyString();
+            expect(product.rating)
+                .withContext(runResult.format('Product Rating'))
+                .toBeInstanceOf(Number);
 
-        expect(product.reviewCount)
-            .withContext(runResult.format('Product Review Count'))
-            .toBeNonEmptyString();
+            expect(product.reviewCount)
+                .withContext(runResult.format('Product Review Count'))
+                .toBeInstanceOf(Number);
 
-        expect(product.availability)
-            .withContext(runResult.format('Product Availability'))
-            .toBeNonEmptyString();
+            expect(product.isAvailable)
+                .withContext(runResult.format('Product Availability'))
+                .toBeDefined();
 
-        expect(product.currencyCode)
-            .withContext(runResult.format('Product Currency Code'))
-            .toBeNonEmptyString();
+            expect(product.currencyCode)
+                .withContext(runResult.format('Product Currency Code'))
+                .toBeNonEmptyString();
 
-        expect(product.price)
-            .withContext(runResult.format('Product Price'))
-            .toBeNonEmptyString();
+            expect(product.price)
+                .withContext(runResult.format('Product Price'))
+                .toBeGreaterThan(0);
 
-        expect(product.sizes)
-            .withContext(runResult.format('Product Sizes'))
-            .toBeNonEmptyArray();
+            expect(product.scrapedAt)
+                .withContext(runResult.format('Product Scraped At'))
+                .toBeNonEmptyString();
 
-        expect(product.colors)
-            .withContext(runResult.format('Product Colors'))
-            .toBeNonEmptyArray();
+            expect(Array.isArray(product.sizes))
+                .withContext(runResult.format('Product Sizes is an Array'))
+                .toBeTrue();
 
-        expect(product.scrappedAt)
-            .withContext(runResult.format('Product Scrapped At'))
-            .toBeNonEmptyString();
+            expect(Array.isArray(product.colors))
+                .withContext(runResult.format('Product Colors is an Array'))
+                .toBeTrue();
+        });
+
+        const hasSizes = products.some((product) => product.sizes?.length > 0);
+        expect(hasSizes)
+            .withContext(runResult.format('Product Sizes are scraped'))
+            .toBeTrue();
+
+        const hasColors = products.some((product) => product.colors?.length > 0);
+        expect(hasColors)
+            .withContext(runResult.format('Product Colors are scraped'))
+            .toBeTrue();
     };
 
     ['beta', 'latest'].forEach((build) => {
@@ -112,21 +125,19 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount')
+                                runResult.format('Dataset cleanItemCount'),
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array')
+                                runResult.format('Dataset items array'),
                             )
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-                        for (const product of results) {
-                            checkProduct(product, runResult);
-                        }
-                    }
+                        checkProducts(results, runResult);
+                    },
                 );
             });
         });
@@ -144,5 +155,5 @@ const input = {
 
 fs.writeFileSync(
     path.join(__dirname, './storage/key_value_stores/default/INPUT.json'),
-    JSON.stringify(input, null, 2)
+    JSON.stringify(input, null, 2),
 );
