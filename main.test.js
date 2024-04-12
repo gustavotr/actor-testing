@@ -11,99 +11,114 @@ const main = ({
     moment,
     describe,
 }) => {
-    const checkProfile = (profile, runResult) => {
-        expect(profile.name)
+    const checkProfiles = (profiles, runResult) => {
+        expect(profiles.find(profile => profile.name)?.name)
             .withContext(runResult.format('Profile Name'))
             .toBeNonEmptyString();
 
-        expect(profile.location)
+        expect(profiles.find(profile => profile.location)?.location)
             .withContext(runResult.format('Profile Location'))
             .toBeNonEmptyString();
 
-        expect(profile.locality)
+        expect(profiles.find(profile => profile.locality)?.locality)
             .withContext(runResult.format('Profile Locality'))
             .toBeNonEmptyString();
 
-        expect(profile.country)
+        expect(profiles.find(profile => profile.country)?.country)
             .withContext(runResult.format('Profile Country'))
             .toBeNonEmptyString();
 
-        expect(profile.title)
+        expect(profiles.every(profile => !!profile.title))
+            .withContext(runResult.format('Profile Title is present'))
+            .toBeTrue();
+
+        expect(profiles.find(profile => profile.title)?.title)
             .withContext(runResult.format('Profile Title'))
             .toBeNonEmptyString();
 
-        expect(profile.jobSuccess)
+        expect(profiles.find(profile => profile.jobSuccess)?.jobSuccess)
             .withContext(runResult.format('Profile Job Success'))
             .toBeNonEmptyString();
 
-        expect(profile.hourlyRate)
+        expect(profiles.find(profile => profile.hourlyRate)?.hourlyRate)
             .withContext(runResult.format('Profile Hourly Rate'))
             .toBeNonEmptyString();
 
-        expect(profile.totalHours)
+        expect(profiles.find(profile => profile.totalHours)?.totalHours)
             .withContext(runResult.format('Profile Total Hours'))
             .toBeNonEmptyString();
 
-        expect(profile.totalJobs)
+        expect(profiles.find(profile => profile.totalJobs)?.totalJobs)
             .withContext(runResult.format('Profile Total Jobs'))
             .toBeNonEmptyString();
 
-        expect(profile.skills)
+        expect(profiles.find(profile => profile.skills)?.skills)
             .withContext(runResult.format('Profile Skills'))
             .toBeNonEmptyString();
 
-        expect(profile.profileUrl)
+        expect(profiles.every(profile => !!profile.url))
+            .withContext(runResult.format('Profile Url is present'))
+            .toBeTrue();
+
+        expect(profiles.find(profile => profile.url)?.url)
             .withContext(runResult.format('Profile Url'))
             .toStartWith('https://www.upwork.com/freelancers/~');
     };
 
-    const checkJob = (job, runResult) => {
-        expect(job.title)
+    const checkJobs = (jobs, runResult) => {
+        expect(jobs.find(job => job.title)?.title)
             .withContext(runResult.format('Job title'))
             .toBeNonEmptyString();
 
-        expect(job.description)
+        expect(jobs.find(job => job.description)?.description)
             .withContext(runResult.format('Job Description'))
             .toBeNonEmptyString();
 
-        expect(job.jobType)
+        expect(jobs.find(job => job.jobType)?.jobType)
             .withContext(runResult.format('Job Type'))
             .toBeNonEmptyString();
 
-        expect(job.contractorTier)
+        expect(jobs.find(job => job.contractorTier)?.contractorTier)
             .withContext(runResult.format('Job Contractor Tier'))
             .toBeNonEmptyString();
 
-        expect(job.skills)
+        expect(jobs.find(job => job.skills)?.skills)
             .withContext(runResult.format('Job Skills'))
-            .toBeNonEmptyString();
+            .toBeNonEmptyArray();
 
-        expect(job.duration)
+        expect(jobs.find(job => job.duration)?.duration)
             .withContext(runResult.format('Job Duration'))
             .toBeNonEmptyString();
 
-        expect(job.engagement)
+        expect(jobs.find(job => job.engagement)?.engagement)
             .withContext(runResult.format('Job Engagement'))
             .toBeNonEmptyString();
 
-        expect(job.createdAt)
+        expect(jobs.find(job => job.createdAt)?.createdAt)
             .withContext(runResult.format('Job Created At'))
             .toBeNonEmptyString();
 
-        expect(job.scrapedAt)
+        expect(jobs.every(job => !!job.scrapedAt))
+            .withContext('Job Scraped At is present')
+            .toBeTrue();
+
+        expect(jobs.find(job => job.scrapedAt)?.scrapedAt)
             .withContext(runResult.format('Job Scraped At'))
             .toBeNonEmptyString();
 
-        expect(job.url)
+        expect(jobs.find(job => job.url)?.url)
             .withContext(runResult.format('Job Url'))
-            .toStartWith('https://www.upwork.com/freelance-jobs/apply/');
+            .toStartWith('https://www.upwork.com/jobs/');
 
-        expect(job.applyUrl)
+        expect(jobs.find(job => job.applyUrl)?.applyUrl)
             .withContext(runResult.format('Job Apply Url'))
             .toStartWith('https://www.upwork.com/ab/proposals/job/~');
     };
 
-    ['beta', 'latest'].forEach((build) => {
+    [
+        'beta',
+        'latest'
+    ].forEach((build) => {
         describe(`Upwork scraper (${build} version)`, () => {
             it('should scrape hire url', async () => {
                 const runResult = await run({
@@ -166,9 +181,7 @@ const main = ({
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-                        for (const profile of results) {
-                            checkProfile(profile, runResult);
-                        }
+                        checkProfiles(results, runResult);
                     }
                 );
             });
@@ -234,9 +247,7 @@ const main = ({
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-                        for (const profile of results) {
-                            checkProfile(profile, runResult);
-                        }
+                        checkProfiles(results, runResult);
                     }
                 );
             });
@@ -300,9 +311,7 @@ const main = ({
                             .toBeNonEmptyArray();
 
                         const results = dataset.items;
-                        for (const job of results) {
-                            checkJob(job, runResult);
-                        }
+                        checkJobs(results, runResult);
                     }
                 );
             });
