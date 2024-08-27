@@ -72,7 +72,7 @@ const main = ({
             .withContext(runResult.format('Community members'))
             .toBe(true);
 
-        expect(community.moderators?.lengt > 0 || !community.moderators)
+        expect(community.moderators?.length > 0 || !community.moderators)
             .withContext(runResult.format('Community moderators'))
             .toBe(true);
 
