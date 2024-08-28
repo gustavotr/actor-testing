@@ -733,6 +733,7 @@ const main = ({
                         searchPosts: true,
                         searchUsers: false,
                         skipComments: false,
+                        skipCommunity: true,
                         startUrls: [
                             { url: 'https://www.reddit.com/r/popular/' },
                         ],
