@@ -154,8 +154,12 @@ const main = ({
             .withContext(runResult.format('User Icon'))
             .toBeNonEmptyString();
 
-        expect(user.karma)
-            .withContext(runResult.format('User Karma'))
+        expect(user.postKarma)
+            .withContext(runResult.format('User Post Karma'))
+            .toBeInstanceOf(Number);
+
+        expect(user.commentKarma)
+            .withContext(runResult.format('User Comment Karma'))
             .toBeInstanceOf(Number);
 
         expect(user.createdAt)
