@@ -1,21 +1,21 @@
 [
   [
-    "2a8a1b234c59895d",
+    "6bb31dc9561a1c87",
     {
-      "hashCode": "2a8a1b234c59895d",
+      "hashCode": "6bb31dc9561a1c87",
       "data": {
-        "id": "9rg7myf5y3TDgThsg",
+        "id": "gpDEhcJXXiDP2hELa",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 546,
+          "inputBodyLen": 528,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "2nNvONL80rgaQwS5M",
-        "defaultDatasetId": "iAJmRR68IqU2pSbyu",
-        "defaultRequestQueueId": "I386gouhR691LQ4ng",
+        "defaultKeyValueStoreId": "wDhhkrAa2BkZN64Vb",
+        "defaultDatasetId": "Tc5xwrCwggeYFbyWo",
+        "defaultRequestQueueId": "5dhvmsD14JNtNaIov",
         "pricingInfo": {
           "pricingModel": "PRICE_PER_DATASET_ITEM",
           "startedAt": "2023-12-29T12:48:13.779Z",
@@ -57,9 +57,72 @@
           "PROXY_SERPS": 0
         },
         "actorName": "reddit-scraper-lite",
-        "name": "Reddit Comment Check"
+        "name": "Reddit PRO Search Post Start Url Health Check"
       },
-      "runId": "9rg7myf5y3TDgThsg"
+      "runId": "gpDEhcJXXiDP2hELa"
+    }
+  ],
+  [
+    "1273dd3c55c970d1",
+    {
+      "hashCode": "1273dd3c55c970d1",
+      "data": {
+        "id": "A9g7Swp7c2RJm9OpN",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 528,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "72aNIY2AHKEAZswYJ",
+        "defaultDatasetId": "s6Aj9kDTPyfZ7WKW0",
+        "defaultRequestQueueId": "UdGZ1aCy0ThiV1ZKp",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.13.9",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit PRO Search Post Start Url Health Check"
+      },
+      "runId": "A9g7Swp7c2RJm9OpN"
     }
   ]
 ]

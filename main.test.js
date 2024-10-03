@@ -255,7 +255,85 @@ const main = ({
                 );
             });
 
-            it('should search for posts using a start url successfully', async () => {
+            it('should search for posts using a start url successfully on pro version', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 0,
+                        maxCommunitiesCount: 0,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 0,
+                        maxPostCount: 10,
+                        proxy: {
+                            useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        searches: [],
+                        startUrls: [
+                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=link' },
+                        ],
+                        sort: 'relevance',
+                        isLiteVersion: false,
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit PRO Search Post Start Url Health Check',
+                });
+
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
+
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1000, 10 * 60000);
+                });
+
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
+
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
+
+                        const results = dataset.items;
+                        for (const post of results) {
+                            checkPost(post, runResult);
+                        }
+                    },
+                );
+            });
+
+            it('should fail to search for posts using a start url edge case', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
@@ -316,18 +394,13 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBe(0);
 
                         expect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-                        for (const post of results) {
-                            checkPost(post, runResult);
-                        }
+                            .toBeEmptyArray();
                     },
                 );
             });
