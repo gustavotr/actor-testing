@@ -193,6 +193,9 @@ const main = ({
                         maxPostCount: 10,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -264,6 +267,9 @@ const main = ({
                         maxPostCount: 10,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -338,6 +344,9 @@ const main = ({
                         maxPostCount: 0,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: true,
@@ -410,6 +419,9 @@ const main = ({
                         maxPostCount: 0,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -482,6 +494,9 @@ const main = ({
                         maxPostCount: 2,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -562,6 +577,9 @@ const main = ({
                         maxPostCount: 2,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -646,6 +664,9 @@ const main = ({
                         maxPostCount: 2,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -730,6 +751,9 @@ const main = ({
                         maxPostCount: 2,
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
                         },
                         scrollTimeout: 40,
                         searchComments: false,
@@ -811,6 +835,9 @@ const main = ({
                     maxPostCount: 1,
                     proxy: {
                         useApifyProxy: true,
+                        apifyProxyGroups: [
+                            'RESIDENTIAL',
+                        ],
                     },
                     scrollTimeout: 40,
                     searchComments: false,
@@ -881,6 +908,105 @@ const main = ({
                     }
                     if (result.dataType === 'user') {
                         checkUser(result, runResult);
+                    }
+                }
+            });
+        });
+
+        it('should scrape a comment', async () => {
+            const runResult = await run({
+                actorId: 'oAuCIx3ItNrs2okjQ',
+                input: {
+                    debugMode: true,
+                    maxComments: 10,
+                    maxCommunitiesAndUsers: 5000000,
+                    maxItems: 10,
+                    maxLeaderBoardItems: 5000000,
+                    maxPostCount: 1,
+                    proxy: {
+                        useApifyProxy: true,
+                        apifyProxyGroups: [
+                            'RESIDENTIAL',
+                        ],
+                    },
+                    scrollTimeout: 40,
+                    searchComments: false,
+                    searchCommunities: false,
+                    searchPosts: true,
+                    searchUsers: false,
+                    paid: true,
+                    startUrls: [
+                        {
+                            url: 'https://www.reddit.com/r/thunderdev/comments/1f2b8ss/comment/lq3hrs1/',
+                        },
+                    ],
+                },
+                options: {
+                    build,
+                },
+                name: 'Reddit Comment Check',
+            });
+
+            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+            await expectAsync(runResult).withLog((log) => {
+                expect(log)
+                    .withContext(runResult.format('Log ReferenceError'))
+                    .not.toContain('ReferenceError');
+                expect(log)
+                    .withContext(runResult.format('Log TypeError'))
+                    .not.toContain('TypeError');
+                expect(log)
+                    .withContext(runResult.format('Log DEBUG'))
+                    .toContain('DEBUG');
+            });
+
+            await expectAsync(runResult).withStatistics((stats) => {
+                expect(stats.requestsRetries)
+                    .withContext(runResult.format('Request retries'))
+                    .toBeLessThan(5);
+                expect(stats.crawlerRuntimeMillis)
+                    .withContext(runResult.format('Run time'))
+                    .toBeWithinRange(1000, 10 * 60000);
+            });
+
+            await expectAsync(runResult).withDataset(({ dataset, info }) => {
+                expect(info.cleanItemCount)
+                    .withContext(runResult.format('Dataset cleanItemCount'))
+                    .not.toBeLessThan(0);
+
+                expect(dataset.items)
+                    .withContext(runResult.format('Dataset items array'))
+                    .toBeNonEmptyArray();
+
+                const results = dataset.items;
+
+                const posts = results.filter(({ dataType }) => dataType === 'post');
+                const comments = results.filter(({ dataType }) => dataType === 'comment');
+                const users = results.filter(({ dataType }) => dataType === 'user');
+                const communities = results.filter(({ dataType }) => dataType === 'community');
+
+                const commentId = results.find(({ id }) => id === 't1_lq3hrs1')?.id;
+
+                expect(commentId)
+                    .withContext(runResult.format('Comment data'))
+                    .toBe('t1_lq3hrs1');
+
+                expect(posts.length)
+                    .withContext(runResult.format('Post count'))
+                    .toBe(0);
+                expect(users.length)
+                    .withContext(runResult.format('User count'))
+                    .toBe(0);
+                expect(communities.length)
+                    .withContext(runResult.format('Community count'))
+                    .toBe(0);
+                expect(comments.length)
+                    .withContext(runResult.format('Comment count'))
+                    .not.toBeLessThan(0);
+
+                for (const result of results) {
+                    if (result.dataType === 'comment') {
+                        checkComment(result, runResult);
                     }
                 }
             });
