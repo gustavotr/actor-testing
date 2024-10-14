@@ -67,6 +67,7 @@ const main = ({
                         search: 'Jeans',
                         proxy: {
                             useApifyProxy: true,
+                            apifyProxyCountry: 'US',
                         },
                         apiData: false,
                         debugMode: true,
@@ -105,13 +106,13 @@ const main = ({
                     ({ dataset, info }) => {
                         expect(info.cleanItemCount)
                             .withContext(
-                                runResult.format('Dataset cleanItemCount')
+                                runResult.format('Dataset cleanItemCount'),
                             )
                             .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
-                                runResult.format('Dataset items array')
+                                runResult.format('Dataset items array'),
                             )
                             .toBeNonEmptyArray();
 
@@ -119,7 +120,7 @@ const main = ({
                         for (const product of results) {
                             checkProduct(product, runResult);
                         }
-                    }
+                    },
                 );
             });
         });
@@ -137,5 +138,5 @@ const input = {
 
 fs.writeFileSync(
     path.join(__dirname, './storage/key_value_stores/default/INPUT.json'),
-    JSON.stringify(input, null, 2)
+    JSON.stringify(input, null, 2),
 );
