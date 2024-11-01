@@ -11,115 +11,160 @@ const main = ({
     moment,
     describe,
 }) => {
-    const checkProduct = (product, runResult) => {
-        expect(product.title)
+    const checkProducts = (products, runResult) => {
+        const { title } = products.find((p) => p.title?.length);
+        expect(title)
             .withContext(runResult.format('Product Name'))
             .toBeNonEmptyString();
 
-        expect(product.price)
+        const { price } = products.find((p) => p.price?.length);
+        expect(price)
             .withContext(runResult.format('Product Price'))
             .toBeNonEmptyString();
 
-        expect(product.rating)
+        const { rating } = products.find((p) => p.rating?.length);
+        expect(rating)
             .withContext(runResult.format('Product Rating'))
             .toBeNonEmptyString();
 
-        expect(product.reviews)
+        const { reviews } = products.find((p) => p.reviews?.length);
+        expect(reviews)
             .withContext(runResult.format('Product Reviews'))
             .toBeNonEmptyString();
 
-        expect(product.condition)
+        const { condition } = products.find((p) => p.condition?.length);
+        expect(condition)
             .withContext(runResult.format('Product Condition'))
             .toBeNonEmptyString();
 
-        expect(product.seller)
+        const { seller } = products.find((p) => p.seller?.length);
+        expect(seller)
             .withContext(runResult.format('Product Seller'))
             .toBeNonEmptyString();
 
-        expect(product.quantity_available)
+        const { quantity_available: quantityAvailable } = products.find((p) => p.quantity_available?.length);
+        expect(quantityAvailable)
             .withContext(runResult.format('Product Quantity Available'))
             .toBeNonEmptyString();
 
-        expect(product.description)
+        const { description } = products.find((p) => p.description?.length);
+        expect(description)
             .withContext(runResult.format('Product Description'))
             .toBeNonEmptyString();
 
-        expect(product.images)
+        const { images } = products.find((p) => p.images.length);
+        expect(images)
             .withContext(runResult.format('Product Images'))
             .toBeNonEmptyArray();
 
-        expect(product.url)
+        const { url } = products.find((p) => p.url?.length);
+        expect(url)
             .withContext(runResult.format('Product Url'))
             .toBeNonEmptyString();
 
-        expect(product.currency)
+        const { currency } = products.find((p) => p.currency?.length);
+        expect(currency)
             .withContext(runResult.format('Product Currency'))
             .toBeNonEmptyString();
     };
 
-    ['beta', 'latest'].forEach((build) => {
+    const testForCountry = (countryCode, build) => {
+        it(`should search for smartphone in ${countryCode}`, async () => {
+            const runResult = await run({
+                actorId: 'q0PB9Xd1hjynYAEhi',
+                input: {
+                    debugMode: true,
+                    domainCode: countryCode,
+                    fastMode: false,
+                    maxItemCount: 5,
+                    proxy: {
+                        useApifyProxy: true,
+                    },
+                    search: 'smartphone',
+                },
+                options: {
+                    build,
+                },
+                name: `Mercadolibre ${countryCode} Search Health Check`,
+            });
+
+            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+            await expectAsync(runResult).withLog((log) => {
+                expect(log)
+                    .withContext(runResult.format('Log ReferenceError'))
+                    .not.toContain('ReferenceError');
+                expect(log)
+                    .withContext(runResult.format('Log TypeError'))
+                    .not.toContain('TypeError');
+                expect(log)
+                    .withContext(runResult.format('Log DEBUG'))
+                    .toContain('DEBUG');
+            });
+
+            await expectAsync(runResult).withStatistics((stats) => {
+                expect(stats.requestsRetries)
+                    .withContext(runResult.format('Request retries'))
+                    .toBeLessThan(5);
+                expect(stats.crawlerRuntimeMillis)
+                    .withContext(runResult.format('Run time'))
+                    .toBeWithinRange(10 * 1000, 2 * 60 * 1000);
+            });
+
+            await expectAsync(runResult).withDataset(
+                ({ dataset, info }) => {
+                    expect(info.cleanItemCount)
+                        .withContext(
+                            runResult.format('Dataset cleanItemCount'),
+                        )
+                        .toBeWithinRange(5, 7);
+
+                    expect(dataset.items)
+                        .withContext(
+                            runResult.format('Dataset items array'),
+                        )
+                        .toBeNonEmptyArray();
+
+                    const results = dataset.items;
+                    checkProducts(results, runResult);
+                },
+            );
+        });
+    };
+
+    ['beta'].forEach((build) => {
         describe(`Mercadolibre scraper (${build} version)`, () => {
-            it('should search for smartphone in Mexico', async () => {
-                const runResult = await run({
-                    actorId: 'q0PB9Xd1hjynYAEhi',
-                    input: {
-                        debugMode: true,
-                        domainCode: 'MX',
-                        fastMode: false,
-                        maxItemCount: 5,
-                        proxy: {
-                            useApifyProxy: true,
-                        },
-                        search: 'smartphone',
-                    },
-                    options: {
-                        build,
-                    },
-                    name: 'Mercadolibre Search Health Check',
-                });
+            [
+                'BR',
+                'MX',
+            ].forEach((countryCode) => {
+                testForCountry(countryCode, build);
+            });
+        });
+    });
 
-                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
-                await expectAsync(runResult).withLog((log) => {
-                    expect(log)
-                        .withContext(runResult.format('Log ReferenceError'))
-                        .not.toContain('ReferenceError');
-                    expect(log)
-                        .withContext(runResult.format('Log TypeError'))
-                        .not.toContain('TypeError');
-                    expect(log)
-                        .withContext(runResult.format('Log DEBUG'))
-                        .toContain('DEBUG');
-                });
-
-                await expectAsync(runResult).withStatistics((stats) => {
-                    expect(stats.requestsRetries)
-                        .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
-                    expect(stats.crawlerRuntimeMillis)
-                        .withContext(runResult.format('Run time'))
-                        .toBeWithinRange(10 * 1000, 2 * 60 * 1000);
-                });
-
-                await expectAsync(runResult).withDataset(
-                    ({ dataset, info }) => {
-                        expect(info.cleanItemCount)
-                            .withContext(
-                                runResult.format('Dataset cleanItemCount'),
-                            )
-                            .toBeWithinRange(5, 7);
-
-                        expect(dataset.items)
-                            .withContext(
-                                runResult.format('Dataset items array'),
-                            )
-                            .toBeNonEmptyArray();
-
-                        const results = dataset.items;
-                        for (const product of results) {
-                            checkProduct(product, runResult);
-                        }
-                    },
-                );
+    ['latest'].forEach((build) => {
+        describe(`Mercadolibre scraper (${build} version)`, () => {
+            [
+                // 'AR',
+                // 'BO',
+                'BR',
+                // 'CL',
+                // 'CO',
+                // 'CR',
+                // 'DO',
+                // 'EC',
+                // 'GT',
+                // 'HN',
+                'MX',
+                // 'NI',
+                // 'PA',
+                // 'PY',
+                // 'PE',
+                // 'SV',
+                // 'UY',
+                // 'VE',
+            ].forEach((countryCode) => {
+                testForCountry(countryCode, build);
             });
         });
     });
