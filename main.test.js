@@ -638,6 +638,90 @@ const main = ({
                 );
             });
 
+            it('should search for community successfully in pro version', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesCount: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
+                        },
+                        scrollTimeout: 40,
+                        searchComments: true,
+                        searchCommunities: true,
+                        searchPosts: false,
+                        searchUsers: false,
+                        skipComments: false,
+                        searches: ['pizza'],
+                        isLiteVersion: false,
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Pro Search Community Check',
+                });
+
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
+
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1000, 10 * 60000);
+                });
+
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
+
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
+
+                        const results = dataset.items;
+
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                checkPost(result, runResult);
+                            }
+                            if (result.dataType === 'community') {
+                                checkCommunity(result, runResult);
+                            }
+                            if (result.dataType === 'comment') {
+                                checkComment(result, runResult);
+                            }
+                        }
+                    },
+                );
+            });
+
             it('should scrape community', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',

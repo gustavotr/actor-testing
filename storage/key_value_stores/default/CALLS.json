@@ -1,10 +1,73 @@
 [
   [
+    "93ee02aeb480abd5",
+    {
+      "hashCode": "93ee02aeb480abd5",
+      "data": {
+        "id": "jq4iT0Ai6aCxLJfLc",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 428,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "jIQz5NZahLCd9ophK",
+        "defaultDatasetId": "VGahXCDOzQ0kt2F7Z",
+        "defaultRequestQueueId": "qordP3lUIuP3bcdlo",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Post Health Check"
+      },
+      "runId": "jq4iT0Ai6aCxLJfLc"
+    }
+  ],
+  [
     "6bb31dc9561a1c87",
     {
       "hashCode": "6bb31dc9561a1c87",
       "data": {
-        "id": "gpDEhcJXXiDP2hELa",
+        "id": "5zyY3tHlaSYNyx2Y0",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 528,
@@ -13,9 +76,9 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "wDhhkrAa2BkZN64Vb",
-        "defaultDatasetId": "Tc5xwrCwggeYFbyWo",
-        "defaultRequestQueueId": "5dhvmsD14JNtNaIov",
+        "defaultKeyValueStoreId": "plmuWyZqTgNXACCnR",
+        "defaultDatasetId": "MoXUdZppPGNIs5ewJ",
+        "defaultRequestQueueId": "RXApEC1h0RcebKpbE",
         "pricingInfo": {
           "pricingModel": "PRICE_PER_DATASET_ITEM",
           "startedAt": "2023-12-29T12:48:13.779Z",
@@ -26,7 +89,7 @@
           "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
           "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
         },
-        "buildNumber": "4.13.13",
+        "buildNumber": "4.15.5",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -59,26 +122,26 @@
         "actorName": "reddit-scraper-lite",
         "name": "Reddit PRO Search Post Start Url Health Check"
       },
-      "runId": "gpDEhcJXXiDP2hELa"
+      "runId": "5zyY3tHlaSYNyx2Y0"
     }
   ],
   [
-    "1273dd3c55c970d1",
+    "e57b6833079bf415",
     {
-      "hashCode": "1273dd3c55c970d1",
+      "hashCode": "e57b6833079bf415",
       "data": {
-        "id": "A9g7Swp7c2RJm9OpN",
+        "id": "tEVQf5hK4jKDsrfqI",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 528,
+          "inputBodyLen": 506,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "72aNIY2AHKEAZswYJ",
-        "defaultDatasetId": "s6Aj9kDTPyfZ7WKW0",
-        "defaultRequestQueueId": "UdGZ1aCy0ThiV1ZKp",
+        "defaultKeyValueStoreId": "LncfbXaB4iKO0kwso",
+        "defaultDatasetId": "x2OP4PYR3SWNmgK0b",
+        "defaultRequestQueueId": "7EjVP5uqZcyK91rb5",
         "pricingInfo": {
           "pricingModel": "PRICE_PER_DATASET_ITEM",
           "startedAt": "2023-12-29T12:48:13.779Z",
@@ -89,7 +152,7 @@
           "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
           "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
         },
-        "buildNumber": "4.13.9",
+        "buildNumber": "4.15.5",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -120,9 +183,576 @@
           "PROXY_SERPS": 0
         },
         "actorName": "reddit-scraper-lite",
-        "name": "Reddit PRO Search Post Start Url Health Check"
+        "name": "Reddit Search Post Start Url Health Check"
       },
-      "runId": "A9g7Swp7c2RJm9OpN"
+      "runId": "tEVQf5hK4jKDsrfqI"
+    }
+  ],
+  [
+    "bbc8fc9cabf24f34",
+    {
+      "hashCode": "bbc8fc9cabf24f34",
+      "data": {
+        "id": "Dosb2tPNrRT1zdNPi",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 428,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "wQIargHNkJmZ0k6HB",
+        "defaultDatasetId": "c0qU1OHk5zvN3RZzr",
+        "defaultRequestQueueId": "OUpAwhyYIX03OxFZp",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Comments Health Check"
+      },
+      "runId": "Dosb2tPNrRT1zdNPi"
+    }
+  ],
+  [
+    "1e2e6694dd308296",
+    {
+      "hashCode": "1e2e6694dd308296",
+      "data": {
+        "id": "KMcA4kBlUjFrqJtUj",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 428,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "qn5IarF8OwOSV2GkO",
+        "defaultDatasetId": "mQg2vMYI5lkb8oc2i",
+        "defaultRequestQueueId": "L4TuRMRWjuCSdkFAZ",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Users Health Check"
+      },
+      "runId": "KMcA4kBlUjFrqJtUj"
+    }
+  ],
+  [
+    "625655f0ab01ee2c",
+    {
+      "hashCode": "625655f0ab01ee2c",
+      "data": {
+        "id": "qJO5PlcXq474MCmve",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 421,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "UEdDdyqIBezgGTVvw",
+        "defaultDatasetId": "Nt6i9Q3iOpBnYyGc5",
+        "defaultRequestQueueId": "6Eumc3RcUHtaKaDlo",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Community Check"
+      },
+      "runId": "qJO5PlcXq474MCmve"
+    }
+  ],
+  [
+    "30f5c54aaadc286b",
+    {
+      "hashCode": "30f5c54aaadc286b",
+      "data": {
+        "id": "0zrLlcaWbKsLL58cn",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 442,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "AI5dM29GPvYc68PSs",
+        "defaultDatasetId": "UetPdc4iBhaGdjUBr",
+        "defaultRequestQueueId": "EJpHeb2To0ducqj5h",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Pro Search Community Check"
+      },
+      "runId": "0zrLlcaWbKsLL58cn"
+    }
+  ],
+  [
+    "85984aa435b91c03",
+    {
+      "hashCode": "85984aa435b91c03",
+      "data": {
+        "id": "24KpPhw96M4ZPwi5v",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 460,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "SM1ezxTRbEbG2KAA3",
+        "defaultDatasetId": "ayJTiyAecPasUcNtb",
+        "defaultRequestQueueId": "vdxHz1bbQLTHT6QbX",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Community Check"
+      },
+      "runId": "24KpPhw96M4ZPwi5v"
+    }
+  ],
+  [
+    "4341a07512c43398",
+    {
+      "hashCode": "4341a07512c43398",
+      "data": {
+        "id": "taDmasoPP8dfmHwaN",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 455,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "xM6EuEhSZYIl0lhAX",
+        "defaultDatasetId": "jw8KEOElYt5oBDP7e",
+        "defaultRequestQueueId": "HrQfjWlc6LvsccKBS",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Protected Community Check"
+      },
+      "runId": "taDmasoPP8dfmHwaN"
+    }
+  ],
+  [
+    "c823b418cd815d46",
+    {
+      "hashCode": "c823b418cd815d46",
+      "data": {
+        "id": "xyXDNuBgNL4hQmmoi",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 457,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "Yd1adbVzLVN5G8rUq",
+        "defaultDatasetId": "Jii1NU19blpDu5q61",
+        "defaultRequestQueueId": "3pHEvXNj5VcGrBbPM",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Popular Community Check"
+      },
+      "runId": "xyXDNuBgNL4hQmmoi"
+    }
+  ],
+  [
+    "8521dfdfe347dbac",
+    {
+      "hashCode": "8521dfdfe347dbac",
+      "data": {
+        "id": "sBfKW99kwcqO9Z8EH",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 646,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "QCDXwHIOsoNvC6xqh",
+        "defaultDatasetId": "tYD9LUdo8Lzkf5TcJ",
+        "defaultRequestQueueId": "fkl2pOMHVKFDHTtVr",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit User Check"
+      },
+      "runId": "sBfKW99kwcqO9Z8EH"
+    }
+  ],
+  [
+    "2a8a1b234c59895d",
+    {
+      "hashCode": "2a8a1b234c59895d",
+      "data": {
+        "id": "XH1sRVsSwz3h0mUxD",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 546,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "poyKcezBlR8Uzaevm",
+        "defaultDatasetId": "283ryYMptY2SlQjUg",
+        "defaultRequestQueueId": "NJV2YYW6etbWvSM8Q",
+        "pricingInfo": {
+          "pricingModel": "PRICE_PER_DATASET_ITEM",
+          "startedAt": "2023-12-29T12:48:13.779Z",
+          "pricePerUnitUsd": 0.004,
+          "unitName": "results",
+          "createdAt": "2023-12-15T12:48:23.587Z",
+          "apifyMarginPercentage": 0.2,
+          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
+          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+        },
+        "buildNumber": "4.15.5",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0
+        },
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Comment Check"
+      },
+      "runId": "XH1sRVsSwz3h0mUxD"
     }
   ]
 ]
