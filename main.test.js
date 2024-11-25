@@ -394,13 +394,13 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(0);
+                            .toBe(10);
 
                         expect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
-                            .toBeEmptyArray();
+                            .toBeNonEmptyArray();
                     },
                 );
             });
