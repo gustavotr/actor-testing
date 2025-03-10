@@ -4,7 +4,7 @@
     {
       "hashCode": "93ee02aeb480abd5",
       "data": {
-        "id": "jq4iT0Ai6aCxLJfLc",
+        "id": "fOgRbyKEuZgIYm4Fb",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 428,
@@ -13,20 +13,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "jIQz5NZahLCd9ophK",
-        "defaultDatasetId": "VGahXCDOzQ0kt2F7Z",
-        "defaultRequestQueueId": "qordP3lUIuP3bcdlo",
+        "defaultKeyValueStoreId": "Xmmc8go9fX0ltKzpR",
+        "defaultDatasetId": "499WBeodv24jcIXkT",
+        "defaultRequestQueueId": "GN1AZoWv28godetaK",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -56,10 +74,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/fOgRbyKEuZgIYm4Fb",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Post Health Check"
       },
-      "runId": "jq4iT0Ai6aCxLJfLc"
+      "runId": "fOgRbyKEuZgIYm4Fb"
     }
   ],
   [
@@ -67,7 +86,7 @@
     {
       "hashCode": "6bb31dc9561a1c87",
       "data": {
-        "id": "5zyY3tHlaSYNyx2Y0",
+        "id": "w61JPJVI8ixndip2v",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 528,
@@ -76,20 +95,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "plmuWyZqTgNXACCnR",
-        "defaultDatasetId": "MoXUdZppPGNIs5ewJ",
-        "defaultRequestQueueId": "RXApEC1h0RcebKpbE",
+        "defaultKeyValueStoreId": "79lZgZlELIgD2uwZX",
+        "defaultDatasetId": "mya01HGevc8mJJhKA",
+        "defaultRequestQueueId": "1h6hlKNrjbdEM7kwi",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -119,10 +156,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/w61JPJVI8ixndip2v",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit PRO Search Post Start Url Health Check"
       },
-      "runId": "5zyY3tHlaSYNyx2Y0"
+      "runId": "w61JPJVI8ixndip2v"
     }
   ],
   [
@@ -130,7 +168,7 @@
     {
       "hashCode": "e57b6833079bf415",
       "data": {
-        "id": "tEVQf5hK4jKDsrfqI",
+        "id": "XPpD7JEeRwLMULnJN",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 506,
@@ -139,20 +177,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "LncfbXaB4iKO0kwso",
-        "defaultDatasetId": "x2OP4PYR3SWNmgK0b",
-        "defaultRequestQueueId": "7EjVP5uqZcyK91rb5",
+        "defaultKeyValueStoreId": "xukRBfYZzVkoXNCsD",
+        "defaultDatasetId": "iaoMCGasTQcPIQJZx",
+        "defaultRequestQueueId": "J0osFeGQLbSewLRUM",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -182,10 +238,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/XPpD7JEeRwLMULnJN",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Post Start Url Health Check"
       },
-      "runId": "tEVQf5hK4jKDsrfqI"
+      "runId": "XPpD7JEeRwLMULnJN"
     }
   ],
   [
@@ -193,7 +250,7 @@
     {
       "hashCode": "bbc8fc9cabf24f34",
       "data": {
-        "id": "Dosb2tPNrRT1zdNPi",
+        "id": "elCiEKZPg5YgdLQ11",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 428,
@@ -202,20 +259,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "wQIargHNkJmZ0k6HB",
-        "defaultDatasetId": "c0qU1OHk5zvN3RZzr",
-        "defaultRequestQueueId": "OUpAwhyYIX03OxFZp",
+        "defaultKeyValueStoreId": "ms3ZMlVUBNpCLGM31",
+        "defaultDatasetId": "HQUEF4CA1iOrwCpS6",
+        "defaultRequestQueueId": "NBnl9tNRbbc3wU19U",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -245,10 +320,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/elCiEKZPg5YgdLQ11",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Comments Health Check"
       },
-      "runId": "Dosb2tPNrRT1zdNPi"
+      "runId": "elCiEKZPg5YgdLQ11"
     }
   ],
   [
@@ -256,7 +332,7 @@
     {
       "hashCode": "1e2e6694dd308296",
       "data": {
-        "id": "KMcA4kBlUjFrqJtUj",
+        "id": "Q6AGet6n6cUhrIwBI",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 428,
@@ -265,20 +341,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "qn5IarF8OwOSV2GkO",
-        "defaultDatasetId": "mQg2vMYI5lkb8oc2i",
-        "defaultRequestQueueId": "L4TuRMRWjuCSdkFAZ",
+        "defaultKeyValueStoreId": "OCuXl0NXecKFxZ5nP",
+        "defaultDatasetId": "e8kDSpsFAuiHmxhav",
+        "defaultRequestQueueId": "SJn5SBDqv3EogvTxR",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -308,10 +402,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/Q6AGet6n6cUhrIwBI",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Users Health Check"
       },
-      "runId": "KMcA4kBlUjFrqJtUj"
+      "runId": "Q6AGet6n6cUhrIwBI"
     }
   ],
   [
@@ -319,7 +414,7 @@
     {
       "hashCode": "625655f0ab01ee2c",
       "data": {
-        "id": "qJO5PlcXq474MCmve",
+        "id": "YoqerNFJFNCYWmgx0",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 421,
@@ -328,20 +423,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "UEdDdyqIBezgGTVvw",
-        "defaultDatasetId": "Nt6i9Q3iOpBnYyGc5",
-        "defaultRequestQueueId": "6Eumc3RcUHtaKaDlo",
+        "defaultKeyValueStoreId": "IsEtJ6KhwLVw5IT6h",
+        "defaultDatasetId": "SlRvO0WQOjsQB4tFW",
+        "defaultRequestQueueId": "15HOMDHrvvF6piZmj",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -371,10 +484,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/YoqerNFJFNCYWmgx0",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Community Check"
       },
-      "runId": "qJO5PlcXq474MCmve"
+      "runId": "YoqerNFJFNCYWmgx0"
     }
   ],
   [
@@ -382,7 +496,7 @@
     {
       "hashCode": "30f5c54aaadc286b",
       "data": {
-        "id": "0zrLlcaWbKsLL58cn",
+        "id": "7dSNrqcnesz0YWgeV",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 442,
@@ -391,20 +505,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "AI5dM29GPvYc68PSs",
-        "defaultDatasetId": "UetPdc4iBhaGdjUBr",
-        "defaultRequestQueueId": "EJpHeb2To0ducqj5h",
+        "defaultKeyValueStoreId": "BbG7ta9Dfnx2fcR7z",
+        "defaultDatasetId": "iRy1Ta3Rkn3WUQ9nr",
+        "defaultRequestQueueId": "eabZumc1KQLPApACW",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -434,10 +566,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/7dSNrqcnesz0YWgeV",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Pro Search Community Check"
       },
-      "runId": "0zrLlcaWbKsLL58cn"
+      "runId": "7dSNrqcnesz0YWgeV"
     }
   ],
   [
@@ -445,7 +578,7 @@
     {
       "hashCode": "85984aa435b91c03",
       "data": {
-        "id": "24KpPhw96M4ZPwi5v",
+        "id": "NfDaDlM5u4eUhc8Ns",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 460,
@@ -454,20 +587,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "SM1ezxTRbEbG2KAA3",
-        "defaultDatasetId": "ayJTiyAecPasUcNtb",
-        "defaultRequestQueueId": "vdxHz1bbQLTHT6QbX",
+        "defaultKeyValueStoreId": "ng2Pwq8rpdXVxY4Tc",
+        "defaultDatasetId": "UbuCW6zPvaOdK6hg9",
+        "defaultRequestQueueId": "c47MvMWVS4WZdSsFQ",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -497,10 +648,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/NfDaDlM5u4eUhc8Ns",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Community Check"
       },
-      "runId": "24KpPhw96M4ZPwi5v"
+      "runId": "NfDaDlM5u4eUhc8Ns"
     }
   ],
   [
@@ -508,7 +660,7 @@
     {
       "hashCode": "4341a07512c43398",
       "data": {
-        "id": "taDmasoPP8dfmHwaN",
+        "id": "H6vFW3qBPpg6G6WTk",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 455,
@@ -517,20 +669,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "xM6EuEhSZYIl0lhAX",
-        "defaultDatasetId": "jw8KEOElYt5oBDP7e",
-        "defaultRequestQueueId": "HrQfjWlc6LvsccKBS",
+        "defaultKeyValueStoreId": "Xf52k5YNWvFCGP8Eq",
+        "defaultDatasetId": "xkaeJ9htoiR2IxeVu",
+        "defaultRequestQueueId": "wrBqC6gwJpei4mehi",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -560,10 +730,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/H6vFW3qBPpg6G6WTk",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Protected Community Check"
       },
-      "runId": "taDmasoPP8dfmHwaN"
+      "runId": "H6vFW3qBPpg6G6WTk"
     }
   ],
   [
@@ -571,7 +742,7 @@
     {
       "hashCode": "c823b418cd815d46",
       "data": {
-        "id": "xyXDNuBgNL4hQmmoi",
+        "id": "GnNuj9ewzXVoxYN7C",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 457,
@@ -580,20 +751,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "Yd1adbVzLVN5G8rUq",
-        "defaultDatasetId": "Jii1NU19blpDu5q61",
-        "defaultRequestQueueId": "3pHEvXNj5VcGrBbPM",
+        "defaultKeyValueStoreId": "NvGc9BNDXSxRO2rxf",
+        "defaultDatasetId": "kkC5eVw4NLcjYXAGK",
+        "defaultRequestQueueId": "wKroCiLiVHxrxaGbt",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -623,10 +812,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/GnNuj9ewzXVoxYN7C",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Popular Community Check"
       },
-      "runId": "xyXDNuBgNL4hQmmoi"
+      "runId": "GnNuj9ewzXVoxYN7C"
     }
   ],
   [
@@ -634,7 +824,7 @@
     {
       "hashCode": "8521dfdfe347dbac",
       "data": {
-        "id": "sBfKW99kwcqO9Z8EH",
+        "id": "jVkBzJfpLCec7bydP",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 646,
@@ -643,20 +833,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "QCDXwHIOsoNvC6xqh",
-        "defaultDatasetId": "tYD9LUdo8Lzkf5TcJ",
-        "defaultRequestQueueId": "fkl2pOMHVKFDHTtVr",
+        "defaultKeyValueStoreId": "7rWzyYAxoUg1XfVt9",
+        "defaultDatasetId": "6wbd4fFHAdDCRfRUP",
+        "defaultRequestQueueId": "sb7bF5hTiZrMf8Gd5",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -686,10 +894,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/jVkBzJfpLCec7bydP",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit User Check"
       },
-      "runId": "sBfKW99kwcqO9Z8EH"
+      "runId": "jVkBzJfpLCec7bydP"
     }
   ],
   [
@@ -697,7 +906,7 @@
     {
       "hashCode": "2a8a1b234c59895d",
       "data": {
-        "id": "XH1sRVsSwz3h0mUxD",
+        "id": "BUvFeVuwJqxAOQZ1w",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
           "inputBodyLen": 546,
@@ -706,20 +915,38 @@
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "poyKcezBlR8Uzaevm",
-        "defaultDatasetId": "283ryYMptY2SlQjUg",
-        "defaultRequestQueueId": "NJV2YYW6etbWvSM8Q",
+        "defaultKeyValueStoreId": "tbPoxGWAdE7od8XoM",
+        "defaultDatasetId": "inBHQjqX4M96keaJJ",
+        "defaultRequestQueueId": "cOaKKzE5y4Jlzvu8E",
         "pricingInfo": {
-          "pricingModel": "PRICE_PER_DATASET_ITEM",
-          "startedAt": "2023-12-29T12:48:13.779Z",
-          "pricePerUnitUsd": 0.004,
-          "unitName": "results",
-          "createdAt": "2023-12-15T12:48:23.587Z",
+          "pricingModel": "PAY_PER_EVENT",
+          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
+          "startedAt": "2025-02-20T00:00:00.000Z",
+          "minimalMaxTotalChargeUsd": null,
+          "createdAt": "2025-02-13T10:52:56.554Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2023-12-15T12:48:46.653Z",
-          "notifiedAboutChangeAt": "2023-12-29T13:06:20.466Z"
+          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
+          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "eventPriceUsd": 0.02
+              },
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "eventPriceUsd": 0.004
+              }
+            }
+          }
         },
-        "buildNumber": "4.15.5",
+        "chargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "buildNumber": "4.17.4",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -749,10 +976,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
+        "consoleUrl": "https://console.apify.com/view/runs/BUvFeVuwJqxAOQZ1w",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Comment Check"
       },
-      "runId": "XH1sRVsSwz3h0mUxD"
+      "runId": "BUvFeVuwJqxAOQZ1w"
     }
   ]
 ]

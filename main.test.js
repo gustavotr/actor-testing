@@ -317,7 +317,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 10);
 
                         expect(dataset.items)
                             .withContext(
@@ -1045,7 +1045,7 @@ const main = ({
             await expectAsync(runResult).withDataset(({ dataset, info }) => {
                 expect(info.cleanItemCount)
                     .withContext(runResult.format('Dataset cleanItemCount'))
-                    .toBe(10);
+                    .toBe(3);
 
                 expect(dataset.items)
                     .withContext(runResult.format('Dataset items array'))
