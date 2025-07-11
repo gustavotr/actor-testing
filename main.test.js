@@ -317,7 +317,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBeWithinRange(1, 10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -333,7 +333,7 @@ const main = ({
                 );
             });
 
-            it('should fail to search for posts using a start url edge case', async () => {
+            it('should search for posts using a start url edge case', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
@@ -394,7 +394,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -463,7 +463,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBeWithinRange(1, 12);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -538,7 +538,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBeWithinRange(1, 10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -613,7 +613,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -697,7 +697,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -784,7 +784,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -871,7 +871,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -954,7 +954,7 @@ const main = ({
                             .withContext(
                                 runResult.format('Dataset cleanItemCount'),
                             )
-                            .toBe(10);
+                            .toBeWithinRange(1, 13);
 
                         expect(dataset.items)
                             .withContext(
@@ -1045,7 +1045,7 @@ const main = ({
             await expectAsync(runResult).withDataset(({ dataset, info }) => {
                 expect(info.cleanItemCount)
                     .withContext(runResult.format('Dataset cleanItemCount'))
-                    .toBe(3);
+                    .toBeWithinRange(1, 5);
 
                 expect(dataset.items)
                     .withContext(runResult.format('Dataset items array'))

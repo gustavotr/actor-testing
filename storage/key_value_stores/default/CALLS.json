@@ -4,18 +4,19 @@
     {
       "hashCode": "93ee02aeb480abd5",
       "data": {
-        "id": "fOgRbyKEuZgIYm4Fb",
+        "id": "Fc5MWVrvDObdx5Hvt",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 428,
+          "inputBodyLen": 452,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "Xmmc8go9fX0ltKzpR",
-        "defaultDatasetId": "499WBeodv24jcIXkT",
-        "defaultRequestQueueId": "GN1AZoWv28godetaK",
+        "defaultKeyValueStoreId": "ecVlMMtResMPgBTI5",
+        "defaultDatasetId": "janbxteH1CrJHYkTF",
+        "defaultRequestQueueId": "KfK5NdUZR6hQSBuFl",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -44,7 +45,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -74,11 +81,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/fOgRbyKEuZgIYm4Fb",
+        "consoleUrl": "https://console.apify.com/view/runs/Fc5MWVrvDObdx5Hvt",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Post Health Check"
       },
-      "runId": "fOgRbyKEuZgIYm4Fb"
+      "runId": "Fc5MWVrvDObdx5Hvt"
     }
   ],
   [
@@ -86,18 +93,19 @@
     {
       "hashCode": "6bb31dc9561a1c87",
       "data": {
-        "id": "w61JPJVI8ixndip2v",
+        "id": "T80OeWs4pEjTQzED5",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 528,
+          "inputBodyLen": 552,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "79lZgZlELIgD2uwZX",
-        "defaultDatasetId": "mya01HGevc8mJJhKA",
-        "defaultRequestQueueId": "1h6hlKNrjbdEM7kwi",
+        "defaultKeyValueStoreId": "qqtJFtrorXHzXUfZo",
+        "defaultDatasetId": "b5S3BixScUOGCgZ7b",
+        "defaultRequestQueueId": "ZbAfRAO6S8Z1sq9tc",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -126,7 +134,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -156,11 +170,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/w61JPJVI8ixndip2v",
+        "consoleUrl": "https://console.apify.com/view/runs/T80OeWs4pEjTQzED5",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit PRO Search Post Start Url Health Check"
       },
-      "runId": "w61JPJVI8ixndip2v"
+      "runId": "T80OeWs4pEjTQzED5"
     }
   ],
   [
@@ -168,18 +182,19 @@
     {
       "hashCode": "e57b6833079bf415",
       "data": {
-        "id": "XPpD7JEeRwLMULnJN",
+        "id": "9D1GDDbMA0vFO5Bv9",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 506,
+          "inputBodyLen": 530,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "xukRBfYZzVkoXNCsD",
-        "defaultDatasetId": "iaoMCGasTQcPIQJZx",
-        "defaultRequestQueueId": "J0osFeGQLbSewLRUM",
+        "defaultKeyValueStoreId": "Gzx3TLI0rmADWwqml",
+        "defaultDatasetId": "Amfr3E1FZBmW4edqF",
+        "defaultRequestQueueId": "UwZhiLIa1eCsabba6",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -208,7 +223,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -238,11 +259,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/XPpD7JEeRwLMULnJN",
+        "consoleUrl": "https://console.apify.com/view/runs/9D1GDDbMA0vFO5Bv9",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Post Start Url Health Check"
       },
-      "runId": "XPpD7JEeRwLMULnJN"
+      "runId": "9D1GDDbMA0vFO5Bv9"
     }
   ],
   [
@@ -250,18 +271,19 @@
     {
       "hashCode": "bbc8fc9cabf24f34",
       "data": {
-        "id": "elCiEKZPg5YgdLQ11",
+        "id": "lahmoayCN5UcLykkX",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 428,
+          "inputBodyLen": 452,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "ms3ZMlVUBNpCLGM31",
-        "defaultDatasetId": "HQUEF4CA1iOrwCpS6",
-        "defaultRequestQueueId": "NBnl9tNRbbc3wU19U",
+        "defaultKeyValueStoreId": "daWNDs7gWZGFqaNQh",
+        "defaultDatasetId": "xmi88TiJ629wuVSrk",
+        "defaultRequestQueueId": "pQdNapphy1UXoWkwN",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -290,7 +312,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -320,11 +348,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/elCiEKZPg5YgdLQ11",
+        "consoleUrl": "https://console.apify.com/view/runs/lahmoayCN5UcLykkX",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Comments Health Check"
       },
-      "runId": "elCiEKZPg5YgdLQ11"
+      "runId": "lahmoayCN5UcLykkX"
     }
   ],
   [
@@ -332,18 +360,19 @@
     {
       "hashCode": "1e2e6694dd308296",
       "data": {
-        "id": "Q6AGet6n6cUhrIwBI",
+        "id": "0eRjuqMO9cdIH0rcc",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 428,
+          "inputBodyLen": 452,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "OCuXl0NXecKFxZ5nP",
-        "defaultDatasetId": "e8kDSpsFAuiHmxhav",
-        "defaultRequestQueueId": "SJn5SBDqv3EogvTxR",
+        "defaultKeyValueStoreId": "IMxYygXafAiJSMK5Z",
+        "defaultDatasetId": "aCbaJEkDHT0cd7kWm",
+        "defaultRequestQueueId": "zTeETSGQCUXueaAxg",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -372,7 +401,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -402,11 +437,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/Q6AGet6n6cUhrIwBI",
+        "consoleUrl": "https://console.apify.com/view/runs/0eRjuqMO9cdIH0rcc",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Users Health Check"
       },
-      "runId": "Q6AGet6n6cUhrIwBI"
+      "runId": "0eRjuqMO9cdIH0rcc"
     }
   ],
   [
@@ -414,18 +449,19 @@
     {
       "hashCode": "625655f0ab01ee2c",
       "data": {
-        "id": "YoqerNFJFNCYWmgx0",
+        "id": "yOIqx7o8rvxC7yxNP",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 421,
+          "inputBodyLen": 445,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "IsEtJ6KhwLVw5IT6h",
-        "defaultDatasetId": "SlRvO0WQOjsQB4tFW",
-        "defaultRequestQueueId": "15HOMDHrvvF6piZmj",
+        "defaultKeyValueStoreId": "xAQ6L1DAhwtfLFncg",
+        "defaultDatasetId": "Jt4rfKBvErby1aLcy",
+        "defaultRequestQueueId": "Zbl45biICUQNxBKrN",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -454,7 +490,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -484,11 +526,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/YoqerNFJFNCYWmgx0",
+        "consoleUrl": "https://console.apify.com/view/runs/yOIqx7o8rvxC7yxNP",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Community Check"
       },
-      "runId": "YoqerNFJFNCYWmgx0"
+      "runId": "yOIqx7o8rvxC7yxNP"
     }
   ],
   [
@@ -496,18 +538,19 @@
     {
       "hashCode": "30f5c54aaadc286b",
       "data": {
-        "id": "7dSNrqcnesz0YWgeV",
+        "id": "ohT1hmIdM1WovuOvt",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 442,
+          "inputBodyLen": 466,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "BbG7ta9Dfnx2fcR7z",
-        "defaultDatasetId": "iRy1Ta3Rkn3WUQ9nr",
-        "defaultRequestQueueId": "eabZumc1KQLPApACW",
+        "defaultKeyValueStoreId": "zqvogcRIOHO2Trvds",
+        "defaultDatasetId": "qYGNbidM4alM2d7hx",
+        "defaultRequestQueueId": "gXxAFhGzgxqCSUYKU",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -536,7 +579,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -566,11 +615,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/7dSNrqcnesz0YWgeV",
+        "consoleUrl": "https://console.apify.com/view/runs/ohT1hmIdM1WovuOvt",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Pro Search Community Check"
       },
-      "runId": "7dSNrqcnesz0YWgeV"
+      "runId": "ohT1hmIdM1WovuOvt"
     }
   ],
   [
@@ -578,18 +627,19 @@
     {
       "hashCode": "85984aa435b91c03",
       "data": {
-        "id": "NfDaDlM5u4eUhc8Ns",
+        "id": "PTfRv1gZfxYHfZSim",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 460,
+          "inputBodyLen": 484,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "ng2Pwq8rpdXVxY4Tc",
-        "defaultDatasetId": "UbuCW6zPvaOdK6hg9",
-        "defaultRequestQueueId": "c47MvMWVS4WZdSsFQ",
+        "defaultKeyValueStoreId": "TFTbIFSwOIVq9Ga1x",
+        "defaultDatasetId": "864jWbPZ4FZs7QEwG",
+        "defaultRequestQueueId": "8Wj5IJK0MyvOl9gCQ",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -618,7 +668,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -648,11 +704,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/NfDaDlM5u4eUhc8Ns",
+        "consoleUrl": "https://console.apify.com/view/runs/PTfRv1gZfxYHfZSim",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Community Check"
       },
-      "runId": "NfDaDlM5u4eUhc8Ns"
+      "runId": "PTfRv1gZfxYHfZSim"
     }
   ],
   [
@@ -660,18 +716,19 @@
     {
       "hashCode": "4341a07512c43398",
       "data": {
-        "id": "H6vFW3qBPpg6G6WTk",
+        "id": "dHGEPuVi9e5c9opK5",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 455,
+          "inputBodyLen": 479,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "Xf52k5YNWvFCGP8Eq",
-        "defaultDatasetId": "xkaeJ9htoiR2IxeVu",
-        "defaultRequestQueueId": "wrBqC6gwJpei4mehi",
+        "defaultKeyValueStoreId": "c9oC2J1B7mwz54aYm",
+        "defaultDatasetId": "mQP0YEOvgsPR7wQx2",
+        "defaultRequestQueueId": "PuuBZV7dEvg7qqyUy",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -700,7 +757,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -730,11 +793,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/H6vFW3qBPpg6G6WTk",
+        "consoleUrl": "https://console.apify.com/view/runs/dHGEPuVi9e5c9opK5",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Protected Community Check"
       },
-      "runId": "H6vFW3qBPpg6G6WTk"
+      "runId": "dHGEPuVi9e5c9opK5"
     }
   ],
   [
@@ -742,18 +805,19 @@
     {
       "hashCode": "c823b418cd815d46",
       "data": {
-        "id": "GnNuj9ewzXVoxYN7C",
+        "id": "LVBH6RXwTjhgHBjnt",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 457,
+          "inputBodyLen": 481,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "NvGc9BNDXSxRO2rxf",
-        "defaultDatasetId": "kkC5eVw4NLcjYXAGK",
-        "defaultRequestQueueId": "wKroCiLiVHxrxaGbt",
+        "defaultKeyValueStoreId": "8vG8LdQrrQKzc8Mba",
+        "defaultDatasetId": "P6rWQ3W0u1kRhgS0r",
+        "defaultRequestQueueId": "BBIQBBPav2mxvWsbY",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -782,7 +846,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -812,11 +882,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/GnNuj9ewzXVoxYN7C",
+        "consoleUrl": "https://console.apify.com/view/runs/LVBH6RXwTjhgHBjnt",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Popular Community Check"
       },
-      "runId": "GnNuj9ewzXVoxYN7C"
+      "runId": "LVBH6RXwTjhgHBjnt"
     }
   ],
   [
@@ -824,18 +894,19 @@
     {
       "hashCode": "8521dfdfe347dbac",
       "data": {
-        "id": "jVkBzJfpLCec7bydP",
+        "id": "czIAaG3zAGMsITRI0",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 646,
+          "inputBodyLen": 670,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "7rWzyYAxoUg1XfVt9",
-        "defaultDatasetId": "6wbd4fFHAdDCRfRUP",
-        "defaultRequestQueueId": "sb7bF5hTiZrMf8Gd5",
+        "defaultKeyValueStoreId": "ACLLEKHBihaG9Sy0c",
+        "defaultDatasetId": "UmYjnFPLPGZXqNDa3",
+        "defaultRequestQueueId": "lLppaGQN7pCLhKh3W",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -864,7 +935,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -894,11 +971,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/jVkBzJfpLCec7bydP",
+        "consoleUrl": "https://console.apify.com/view/runs/czIAaG3zAGMsITRI0",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit User Check"
       },
-      "runId": "jVkBzJfpLCec7bydP"
+      "runId": "czIAaG3zAGMsITRI0"
     }
   ],
   [
@@ -906,18 +983,19 @@
     {
       "hashCode": "2a8a1b234c59895d",
       "data": {
-        "id": "BUvFeVuwJqxAOQZ1w",
+        "id": "J3en4qPRSli8XE3Lu",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 546,
+          "inputBodyLen": 570,
+          "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "tbPoxGWAdE7od8XoM",
-        "defaultDatasetId": "inBHQjqX4M96keaJJ",
-        "defaultRequestQueueId": "cOaKKzE5y4Jlzvu8E",
+        "defaultKeyValueStoreId": "YkAvlZ8AXq4XGnVOI",
+        "defaultDatasetId": "3nz4nORY3xPN714Qq",
+        "defaultRequestQueueId": "hjPFcTERxHLj7Cr88",
         "pricingInfo": {
           "pricingModel": "PAY_PER_EVENT",
           "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
@@ -946,7 +1024,13 @@
           "actor-start-gb": 0,
           "result": 0
         },
-        "buildNumber": "4.17.4",
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "actor-start-gb": 0,
+          "result": 0
+        },
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "4.17.41",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -976,11 +1060,11 @@
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
           "PROXY_SERPS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/BUvFeVuwJqxAOQZ1w",
+        "consoleUrl": "https://console.apify.com/view/runs/J3en4qPRSli8XE3Lu",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Comment Check"
       },
-      "runId": "BUvFeVuwJqxAOQZ1w"
+      "runId": "J3en4qPRSli8XE3Lu"
     }
   ]
 ]
