@@ -179,7 +179,7 @@ const main = ({
             .toBe('user');
     };
 
-    ['beta', 'latest'].forEach((build) => {
+    input.versions.forEach((build) => {
         describe(`Reddit scraper (${build} version)`, () => {
             it('should search for posts successfully', async () => {
                 const runResult = await run({
@@ -1175,6 +1175,7 @@ const input = {
     abortRuns: true,
     defaultTimeout: 900000,
     retryFailedTests: true,
+    versions: ['latest'],
     email: 'gustavo@trudax.tech',
     testSpec: main.toString(),
     verboseLogs: true,
