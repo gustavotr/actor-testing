@@ -38,6 +38,18 @@
             "description": "Aborts the underlying actor runs upon aborting this actor as well",
             "editor": "checkbox"
         },
+        "versions": {
+            "title": "Build versions",
+            "type": "array",
+            "description": "Specify the versions to be tested",
+            "prefill": [
+                "latest"
+            ],
+            "default": [
+                "latest"
+            ],
+            "editor": "stringList"
+        },
         "customData": {
             "title": "Custom data",
             "description": "Anything you may want to access through input.customData inside tests",
