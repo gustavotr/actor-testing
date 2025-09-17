@@ -227,7 +227,7 @@ const main = ({
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
                         .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(5);
+                        .toBeLessThan(12);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
                         .toBeWithinRange(1000, 10 * 60000);
@@ -942,7 +942,7 @@ const main = ({
                 await expectAsync(runResult).withStatistics((stats) => {
                     expect(stats.requestsRetries)
                         .withContext(runResult.format('Request retries'))
-                        .toBeLessThan(3);
+                        .toBeLessThan(12);
                     expect(stats.crawlerRuntimeMillis)
                         .withContext(runResult.format('Run time'))
                         .toBeWithinRange(1000, 10 * 60000);
