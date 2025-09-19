@@ -79,6 +79,7 @@ const main = ({
                     maxItemCount: 5,
                     proxy: {
                         useApifyProxy: true,
+                        apifyProxyGroups: ['RESIDENTIAL'],
                     },
                     search: 'smartphone',
                 },
