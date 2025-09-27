@@ -130,20 +130,73 @@ const main = ({
                 },
             );
         });
+
+        it(`should search for vehicles category in ${countryCode}`, async () => {
+            const runResult = await run({
+                actorId: 'q0PB9Xd1hjynYAEhi',
+                input: {
+                    debugMode: true,
+                    domainCode: countryCode,
+                    fastMode: false,
+                    maxItemCount: 5,
+                    proxy: {
+                        useApifyProxy: true,
+                        apifyProxyGroups: ['RESIDENTIAL'],
+                    },
+                    search: 'peugeot 3008',
+                    searchType: 'vehicles',
+                },
+                options: {
+                    build,
+                },
+                name: `Mercadolibre ${countryCode} Search Health Check`,
+            });
+
+            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+            await expectAsync(runResult).withLog((log) => {
+                expect(log)
+                    .withContext(runResult.format('Log ReferenceError'))
+                    .not.toContain('ReferenceError');
+                expect(log)
+                    .withContext(runResult.format('Log TypeError'))
+                    .not.toContain('TypeError');
+                expect(log)
+                    .withContext(runResult.format('Log DEBUG'))
+                    .toContain('DEBUG');
+            });
+
+            await expectAsync(runResult).withStatistics((stats) => {
+                expect(stats.requestsRetries)
+                    .withContext(runResult.format('Request retries'))
+                    .toBeLessThan(5);
+                expect(stats.crawlerRuntimeMillis)
+                    .withContext(runResult.format('Run time'))
+                    .toBeWithinRange(10 * 1000, 2 * 60 * 1000);
+            });
+
+            await expectAsync(runResult).withDataset(
+                ({ dataset, info }) => {
+                    expect(info.cleanItemCount)
+                        .withContext(
+                            runResult.format('Dataset cleanItemCount'),
+                        )
+                        .toBeWithinRange(5, 7);
+
+                    expect(dataset.items)
+                        .withContext(
+                            runResult.format('Dataset items array'),
+                        )
+                        .toBeNonEmptyArray();
+
+                    const results = dataset.items;
+                    checkProducts(results, runResult);
+                    expect(results.every((r) => r.url.startsWith('https://auto')));
+                },
+            );
+        });
     };
 
-    ['beta'].forEach((build) => {
-        describe(`Mercadolibre scraper (${build} version)`, () => {
-            [
-                'BR',
-                'MX',
-            ].forEach((countryCode) => {
-                testForCountry(countryCode, build);
-            });
-        });
-    });
-
-    ['latest'].forEach((build) => {
+    input.versions.forEach((build) => {
         describe(`Mercadolibre scraper (${build} version)`, () => {
             [
                 // 'AR',
