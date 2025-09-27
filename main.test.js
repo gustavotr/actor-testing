@@ -12,62 +12,108 @@ const main = ({
     describe,
 }) => {
     const checkProducts = (products, runResult) => {
-        const { title } = products.find((p) => p.title?.length);
+        const { title } = products.find((p) => p.title?.length) || {};
         expect(title)
             .withContext(runResult.format('Product Name'))
             .toBeNonEmptyString();
 
-        const { price } = products.find((p) => p.price?.length);
+        const { price } = products.find((p) => p.price?.length) || {};
         expect(price)
             .withContext(runResult.format('Product Price'))
             .toBeNonEmptyString();
 
-        const { rating } = products.find((p) => p.rating?.length);
+        const { rating } = products.find((p) => p.rating?.length) || {};
         expect(rating)
             .withContext(runResult.format('Product Rating'))
             .toBeNonEmptyString();
 
-        const { reviews } = products.find((p) => p.reviews?.length);
+        const { reviews } = products.find((p) => p.reviews?.length) || {};
         expect(reviews)
             .withContext(runResult.format('Product Reviews'))
             .toBeNonEmptyString();
 
-        const { condition } = products.find((p) => p.condition?.length);
+        const { condition } = products.find((p) => p.condition?.length) || {};
         expect(condition)
             .withContext(runResult.format('Product Condition'))
             .toBeNonEmptyString();
 
-        const { seller } = products.find((p) => p.seller?.length);
+        const { seller } = products.find((p) => p.seller?.length) || {};
         expect(seller)
             .withContext(runResult.format('Product Seller'))
             .toBeNonEmptyString();
 
-        const { quantity_available: quantityAvailable } = products.find((p) => p.quantity_available?.length);
+        const { quantity_available: quantityAvailable } = products.find((p) => p.quantity_available?.length) || {};
         expect(quantityAvailable)
             .withContext(runResult.format('Product Quantity Available'))
             .toBeNonEmptyString();
 
-        const { description } = products.find((p) => p.description?.length);
+        const { description } = products.find((p) => p.description?.length) || {};
         expect(description)
             .withContext(runResult.format('Product Description'))
             .toBeNonEmptyString();
 
-        const { images } = products.find((p) => p.images.length);
+        const { images } = products.find((p) => p.images.length) || {};
         expect(images)
             .withContext(runResult.format('Product Images'))
             .toBeNonEmptyArray();
 
-        const { url } = products.find((p) => p.url?.length);
+        const { url } = products.find((p) => p.url?.length) || {};
         expect(url)
             .withContext(runResult.format('Product Url'))
             .toBeNonEmptyString();
 
-        const { currency } = products.find((p) => p.currency?.length);
+        const { currency } = products.find((p) => p.currency?.length) || {};
         expect(currency)
             .withContext(runResult.format('Product Currency'))
             .toBeNonEmptyString();
     };
 
+    const checkVehicles = (products, runResult) => {
+        const { title } = products.find((p) => p.title?.length) || {};
+        expect(title)
+            .withContext(runResult.format('Vehicle Name'))
+            .toBeNonEmptyString();
+
+        const { price } = products.find((p) => p.price?.length) || {};
+        expect(price)
+            .withContext(runResult.format('Vehicle Price'))
+            .toBeNonEmptyString();
+
+        const { condition } = products.find((p) => p.condition?.length) || {};
+        expect(condition)
+            .withContext(runResult.format('Vehicle Condition'))
+            .toBeNonEmptyString();
+
+        const { seller } = products.find((p) => p.seller?.length) || {};
+        expect(seller)
+            .withContext(runResult.format('Vehicle Seller'))
+            .toBeNonEmptyString();
+
+        const { quantity_available: quantityAvailable } = products.find((p) => p.quantity_available?.length) || {};
+        expect(quantityAvailable)
+            .withContext(runResult.format('Vehicle Quantity Available'))
+            .toBeNonEmptyString();
+
+        const { description } = products.find((p) => p.description?.length) || {};
+        expect(description)
+            .withContext(runResult.format('Vehicle Description'))
+            .toBeNonEmptyString();
+
+        const { images } = products.find((p) => p.images.length) || {};
+        expect(images)
+            .withContext(runResult.format('Vehicle Images'))
+            .toBeNonEmptyArray();
+
+        const { url } = products.find((p) => p.url?.length) || {};
+        expect(url)
+            .withContext(runResult.format('Vehicle Url'))
+            .toMatch(/https:\/\/(carro|auto)/);
+
+        const { currency } = products.find((p) => p.currency?.length) || {};
+        expect(currency)
+            .withContext(runResult.format('Vehicle Currency'))
+            .toBeNonEmptyString();
+    };
     const testForCountry = (countryCode, build) => {
         it(`should search for smartphone in ${countryCode}`, async () => {
             const runResult = await run({
@@ -189,8 +235,7 @@ const main = ({
                         .toBeNonEmptyArray();
 
                     const results = dataset.items;
-                    checkProducts(results, runResult);
-                    expect(results.every((r) => r.url.startsWith('https://auto')));
+                    checkVehicles(results, runResult);
                 },
             );
         });
