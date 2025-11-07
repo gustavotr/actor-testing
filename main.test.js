@@ -177,6 +177,53 @@ const main = ({
             );
         });
 
+        it(`should paginate with no issues in ${countryCode}`, async () => {
+            const runResult = await run({
+                actorId: 'q0PB9Xd1hjynYAEhi',
+                input: {
+                    debugMode: true,
+                    domainCode: countryCode,
+                    fastMode: true,
+                    maxItemCount: 300,
+                    proxy: {
+                        useApifyProxy: true,
+                        apifyProxyGroups: ['RESIDENTIAL'],
+                    },
+                    search: 'smartphone',
+                },
+                options: {
+                    build,
+                },
+                name: `Mercadolibre ${countryCode} Pagination Health Check`,
+            });
+
+            await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+            await expectAsync(runResult).withLog((log) => {
+                expect(log)
+                    .withContext(runResult.format('Log pagination'))
+                    .not.toContain('Added 1 more page(s) to pagination.');
+            });
+
+            await expectAsync(runResult).withDataset(
+                ({ dataset, info }) => {
+                    expect(info.cleanItemCount)
+                        .withContext(
+                            runResult.format('Dataset cleanItemCount'),
+                        )
+                        .toBeWithinRange(250, 310);
+
+                    expect(dataset.items)
+                        .withContext(
+                            runResult.format('Dataset items array'),
+                        )
+                        .toBeNonEmptyArray();
+
+                    const results = dataset.items;
+                    checkProducts(results, runResult);
+                },
+            );
+        });
+
         it(`should search for vehicles category in ${countryCode}`, async () => {
             const runResult = await run({
                 actorId: 'q0PB9Xd1hjynYAEhi',
