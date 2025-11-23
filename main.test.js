@@ -255,6 +255,76 @@ const main = ({
                 );
             });
 
+            it('should search for posts limiting post date', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        skipComments: true,
+                        skipUserPosts: false,
+                        skipCommunity: false,
+                        ignoreStartUrls: false,
+                        searchPosts: true,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchUsers: false,
+                        sort: 'new',
+                        includeNSFW: false,
+                        maxItems: 10,
+                        maxPostCount: 10,
+                        maxComments: 0,
+                        maxCommunitiesCount: 0,
+                        maxUserCount: 0,
+                        scrollTimeout: 40,
+                        proxy: {
+                            useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
+                        },
+                        startUrls: [
+                            {
+                                url: 'https://www.reddit.com/r/popular/new/',
+                            },
+                        ],
+                        postDateLimit: new Date(Date.now() + 60000 * 60),
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Search Post Date Limit Health Check',
+                });
+
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log Reference'))
+                        .toContain('posts due to date restrictions');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                });
+
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(12);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1000, 10 * 60000);
+                });
+
+                await expectAsync(runResult).withDataset(
+                    ({ info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(0);
+                    },
+                );
+            });
+
             it('should search for posts using a start url successfully on pro version', async () => {
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
