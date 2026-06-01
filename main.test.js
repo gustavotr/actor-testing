@@ -348,7 +348,7 @@ const main = ({
                         searchUsers: false,
                         searches: [],
                         startUrls: [
-                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=link' },
+                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=posts' },
                         ],
                         sort: 'relevance',
                         isLiteVersion: false,
@@ -426,7 +426,7 @@ const main = ({
                         searchUsers: false,
                         searches: [],
                         startUrls: [
-                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=link' },
+                            { url: 'https://www.reddit.com/search/?q=networkasaservice&type=posts' },
                         ],
                         sort: 'relevance',
                     },
