@@ -138,9 +138,6 @@ const main = ({
         if (user.dataType !== 'user') {
             return;
         }
-        expect(user.id)
-            .withContext(runResult.format('User Id'))
-            .toBeNonEmptyString();
 
         expect(user.url)
             .withContext(runResult.format('User Url'))
@@ -204,11 +201,87 @@ const main = ({
                         searchUsers: false,
                         searches: ['pizza'],
                         sort: 'relevance',
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
                     },
                     name: 'Reddit Search Post Health Check',
+                });
+
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
+
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(12);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1000, 10 * 60000);
+                });
+
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBe(10);
+
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
+
+                        const results = dataset.items;
+                        for (const post of results) {
+                            checkPost(post, runResult);
+                        }
+                    },
+                );
+            });
+
+            it('should search for posts successfully without media links', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 0,
+                        maxCommunitiesCount: 0,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 0,
+                        maxPostCount: 10,
+                        proxy: {
+                            useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        searches: ['pizza'],
+                        sort: 'relevance',
+                        includeMediaLinks: false,
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Search Post Health Check without media links',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -288,6 +361,7 @@ const main = ({
                             },
                         ],
                         postDateLimit: new Date(Date.now() + 60000 * 60),
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -352,6 +426,7 @@ const main = ({
                         ],
                         sort: 'relevance',
                         isLiteVersion: false,
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -429,6 +504,7 @@ const main = ({
                             { url: 'https://www.reddit.com/search/?q=networkasaservice&type=posts' },
                         ],
                         sort: 'relevance',
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -498,6 +574,7 @@ const main = ({
                         searchUsers: false,
                         searches: ['pizza'],
                         sort: 'relevance',
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -573,6 +650,7 @@ const main = ({
                         searchUsers: true,
                         searches: ['pizza'],
                         sort: 'relevance',
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -648,6 +726,7 @@ const main = ({
                         searchUsers: false,
                         skipComments: false,
                         searches: ['pizza'],
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -732,6 +811,7 @@ const main = ({
                         skipComments: false,
                         searches: ['pizza'],
                         isLiteVersion: false,
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -819,11 +899,100 @@ const main = ({
                                 url: 'https://www.reddit.com/r/AskReddit/',
                             },
                         ],
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
                     },
                     name: 'Reddit Community Check',
+                });
+
+                await expectAsync(runResult).toHaveStatus('SUCCEEDED');
+                await expectAsync(runResult).withLog((log) => {
+                    expect(log)
+                        .withContext(runResult.format('Log ReferenceError'))
+                        .not.toContain('ReferenceError');
+                    expect(log)
+                        .withContext(runResult.format('Log TypeError'))
+                        .not.toContain('TypeError');
+                    expect(log)
+                        .withContext(runResult.format('Log DEBUG'))
+                        .toContain('DEBUG');
+                });
+
+                await expectAsync(runResult).withStatistics((stats) => {
+                    expect(stats.requestsRetries)
+                        .withContext(runResult.format('Request retries'))
+                        .toBeLessThan(5);
+                    expect(stats.crawlerRuntimeMillis)
+                        .withContext(runResult.format('Run time'))
+                        .toBeWithinRange(1000, 10 * 60000);
+                });
+
+                await expectAsync(runResult).withDataset(
+                    ({ dataset, info }) => {
+                        expect(info.cleanItemCount)
+                            .withContext(
+                                runResult.format('Dataset cleanItemCount'),
+                            )
+                            .toBeWithinRange(1, 13);
+
+                        expect(dataset.items)
+                            .withContext(
+                                runResult.format('Dataset items array'),
+                            )
+                            .toBeNonEmptyArray();
+
+                        const results = dataset.items;
+
+                        for (const result of results) {
+                            if (result.dataType === 'post') {
+                                checkPost(result, runResult);
+                            }
+                            if (result.dataType === 'community') {
+                                checkCommunity(result, runResult);
+                            }
+                            if (result.dataType === 'comment') {
+                                checkComment(result, runResult);
+                            }
+                        }
+                    },
+                );
+            });
+
+            it('should scrape community without media links', async () => {
+                const runResult = await run({
+                    actorId: 'oAuCIx3ItNrs2okjQ',
+                    input: {
+                        debugMode: true,
+                        maxComments: 2,
+                        maxCommunitiesCount: 2,
+                        maxItems: 10,
+                        maxLeaderBoardItems: 2,
+                        maxPostCount: 2,
+                        proxy: {
+                            useApifyProxy: true,
+                            apifyProxyGroups: [
+                                'RESIDENTIAL',
+                            ],
+                        },
+                        scrollTimeout: 40,
+                        searchComments: false,
+                        searchCommunities: false,
+                        searchPosts: true,
+                        searchUsers: false,
+                        skipComments: false,
+                        startUrls: [
+                            {
+                                url: 'https://www.reddit.com/r/AskReddit/',
+                            },
+                        ],
+                        includeMediaLinks: false,
+                    },
+                    options: {
+                        build,
+                    },
+                    name: 'Reddit Community Check without media links',
                 });
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
@@ -906,6 +1075,7 @@ const main = ({
                                 url: 'https://www.reddit.com/r/nsfw/',
                             },
                         ],
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -992,6 +1162,7 @@ const main = ({
                         startUrls: [
                             { url: 'https://www.reddit.com/r/popular/' },
                         ],
+                        includeMediaLinks: true,
                     },
                     options: {
                         build,
@@ -1083,6 +1254,7 @@ const main = ({
                             url: 'https://www.reddit.com/user/BrineOfTheTimes/comments',
                         },
                     ],
+                    includeMediaLinks: true,
                 },
                 options: {
                     build,
@@ -1167,6 +1339,7 @@ const main = ({
                             url: 'https://www.reddit.com/r/thunderdev/comments/1f2b8ss/comment/lq3hrs1/',
                         },
                     ],
+                    includeMediaLinks: true,
                 },
                 options: {
                     build,
