@@ -125,8 +125,8 @@ const main = ({
             .withContext(runResult.format('Comment Up Votes'))
             .toBeInstanceOf(Number);
 
-        expect(comment.numberOfreplies)
-            .withContext(runResult.format('Comment Number of replies'))
+        expect(comment.numberOfReplies)
+            .withContext(runResult.format('Comment Number of Replies'))
             .toBeInstanceOf(Number);
 
         expect(comment.dataType)
