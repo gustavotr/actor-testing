@@ -42,6 +42,9 @@
             "title": "Build versions",
             "type": "array",
             "description": "Specify the versions to be tested",
+            "prefill": [
+                "latest"
+            ],
             "default": [
                 "latest"
             ],
