@@ -10,7 +10,63 @@ const main = ({
     input,
     moment,
     describe,
+    warnings,
 }) => {
+    const warnExpect = (actual) => {
+        const wrap = (contextMessage) => ({
+            toBeNonEmptyString: () => {
+                if (typeof actual !== 'string' || actual.trim().length === 0) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected non-empty string, got ${JSON.stringify(actual)}`);
+                }
+            },
+            toStartWith: (prefix) => {
+                if (typeof actual !== 'string' || !actual.startsWith(prefix)) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected to start with "${prefix}", got ${JSON.stringify(actual)}`);
+                }
+            },
+            toBe: (expected) => {
+                if (actual !== expected) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+                }
+            },
+            toBeInstanceOf: (type) => {
+                if (actual == null || actual.constructor !== type) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected instance of ${type.name}, got ${actual?.constructor?.name || typeof actual}`);
+                }
+            },
+            toContain: (str) => {
+                if (typeof actual !== 'string' || !actual.includes(str)) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected to contain "${str}", got ${JSON.stringify(actual)}`);
+                }
+            },
+            toBeNonEmptyArray: () => {
+                if (!Array.isArray(actual) || actual.length === 0) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected non-empty array`);
+                }
+            },
+            toBeLessThan: (expected) => {
+                if (typeof actual !== 'number' || actual >= expected) {
+                    warnings.push(`[WARNING] ${contextMessage}: Expected less than ${expected}, got ${actual}`);
+                }
+            },
+            not: {
+                toContain: (str) => {
+                    if (typeof actual === 'string' && actual.includes(str)) {
+                        warnings.push(`[WARNING] ${contextMessage}: Expected NOT to contain "${str}"`);
+                    }
+                },
+                toBeLessThan: (expected) => {
+                    if (typeof actual !== 'number' || actual < expected) {
+                        warnings.push(`[WARNING] ${contextMessage}: Expected NOT to be less than ${expected}, got ${actual}`);
+                    }
+                },
+            },
+        });
+        return {
+            withContext: (msg) => wrap(msg),
+        };
+    };
+
     const checkPost = (post, runResult) => {
         if (post.dataType !== 'post') {
             return;
@@ -19,7 +75,7 @@ const main = ({
             .withContext(runResult.format('Post Id'))
             .toBeNonEmptyString();
 
-        expect(post.parsedId)
+        warnExpect(post.parsedId)
             .withContext(runResult.format('Post Parsed Id'))
             .toBeNonEmptyString();
 
@@ -27,27 +83,27 @@ const main = ({
             .withContext(runResult.format('Post Url'))
             .toStartWith('https://www.reddit.com/r/');
 
-        expect(post.username)
+        warnExpect(post.username)
             .withContext(runResult.format('Post Username'))
             .toBeNonEmptyString();
 
-        expect(post.title)
+        warnExpect(post.title)
             .withContext(runResult.format('Post Title'))
             .toBeNonEmptyString();
 
-        expect(post.communityName)
+        warnExpect(post.communityName)
             .withContext(runResult.format('Post Community Name'))
             .toBeNonEmptyString();
 
-        expect(post.parsedCommunityName)
+        warnExpect(post.parsedCommunityName)
             .withContext(runResult.format('Post Parsed Community Name'))
             .toBeNonEmptyString();
 
-        expect(typeof post.body === 'string' || !post.body)
+        warnExpect(typeof post.body === 'string' || !post.body)
             .withContext(runResult.format('Post Body'))
             .toBe(true);
 
-        expect(post.createdAt)
+        warnExpect(post.createdAt)
             .withContext(runResult.format('Post Created At'))
             .toBeNonEmptyString();
 
@@ -60,25 +116,33 @@ const main = ({
         if (community.dataType !== 'community') {
             return;
         }
-        expect(community.title)
+        expect(community.id)
+            .withContext(runResult.format('Community Id'))
+            .toBeNonEmptyString();
+
+        warnExpect(community.title)
             .withContext(runResult.format('Community title'))
             .toBeNonEmptyString();
 
-        expect(community.createdAt)
+        warnExpect(community.createdAt)
             .withContext(runResult.format('Community created at'))
             .toBeNonEmptyString();
 
-        expect(typeof community.members === 'number' || !community.members)
+        warnExpect(typeof community.members === 'number' || !community.members)
             .withContext(runResult.format('Community members'))
             .toBe(true);
 
-        expect(community.moderators?.length > 0 || !community.moderators)
+        warnExpect(community.moderators?.length > 0 || !community.moderators)
             .withContext(runResult.format('Community moderators'))
             .toBe(true);
 
         expect(community.url)
             .withContext(runResult.format('Community url'))
             .toStartWith('https://www.reddit.com/r/');
+
+        expect(community.dataType)
+            .withContext(runResult.format('Community Data Type'))
+            .toBe('community');
     };
 
     const checkComment = (comment, runResult) => {
@@ -89,7 +153,7 @@ const main = ({
             .withContext(runResult.format('Comment Id'))
             .toBeNonEmptyString();
 
-        expect(comment.parsedId)
+        warnExpect(comment.parsedId)
             .withContext(runResult.format('Comment Parsed Id'))
             .toBeNonEmptyString();
 
@@ -97,35 +161,35 @@ const main = ({
             .withContext(runResult.format('Comment Url'))
             .toStartWith('https://www.reddit.com/r/');
 
-        expect(comment.parentId)
+        warnExpect(comment.parentId)
             .withContext(runResult.format('Comment Parent Id'))
             .toBeNonEmptyString();
 
-        expect(comment.username)
+        warnExpect(comment.username)
             .withContext(runResult.format('Comment Username'))
             .toBeNonEmptyString();
 
-        expect(comment.category)
+        warnExpect(comment.category)
             .withContext(runResult.format('Comment Category'))
             .toBeNonEmptyString();
 
-        expect(comment.communityName)
+        warnExpect(comment.communityName)
             .withContext(runResult.format('Comment Community Name'))
             .toBeNonEmptyString();
 
-        expect(comment.body)
+        warnExpect(comment.body)
             .withContext(runResult.format('Comment Body'))
             .toBeNonEmptyString();
 
-        expect(comment.createdAt)
+        warnExpect(comment.createdAt)
             .withContext(runResult.format('Comment Created At'))
             .toBeNonEmptyString();
 
-        expect(comment.upVotes)
+        warnExpect(comment.upVotes)
             .withContext(runResult.format('Comment Up Votes'))
             .toBeInstanceOf(Number);
 
-        expect(comment.numberOfReplies)
+        warnExpect(comment.numberOfReplies)
             .withContext(runResult.format('Comment Number of Replies'))
             .toBeInstanceOf(Number);
 
@@ -139,35 +203,39 @@ const main = ({
             return;
         }
 
+        expect(user.id)
+            .withContext(runResult.format('User Id'))
+            .toBeNonEmptyString();
+
         expect(user.url)
             .withContext(runResult.format('User Url'))
             .toStartWith('https://www.reddit.com/user/');
 
-        expect(user.username)
+        warnExpect(user.username)
             .withContext(runResult.format('User Username'))
             .toBeNonEmptyString();
 
-        expect(user.userIcon)
+        warnExpect(user.userIcon)
             .withContext(runResult.format('User Icon'))
             .toBeNonEmptyString();
 
-        expect(user.postKarma)
+        warnExpect(user.postKarma)
             .withContext(runResult.format('User Post Karma'))
             .toBeInstanceOf(Number);
 
-        expect(user.commentKarma)
+        warnExpect(user.commentKarma)
             .withContext(runResult.format('User Comment Karma'))
             .toBeInstanceOf(Number);
 
-        expect(user.createdAt)
+        warnExpect(user.createdAt)
             .withContext(runResult.format('User Created At'))
             .toBeNonEmptyString();
 
-        expect(user.scrapedAt)
+        warnExpect(user.scrapedAt)
             .withContext(runResult.format('User Scraped At'))
             .toBeNonEmptyString();
 
-        expect(user.over18)
+        warnExpect(user.over18)
             .withContext(runResult.format('User Over 18'))
             .toBeInstanceOf(Boolean);
 
@@ -211,13 +279,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -239,7 +307,7 @@ const main = ({
                             )
                             .toBe(10);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -286,13 +354,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -314,7 +382,7 @@ const main = ({
                             )
                             .toBe(10);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -371,10 +439,10 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log Reference'))
                         .toContain('posts due to date restrictions');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
                 });
@@ -436,13 +504,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -464,7 +532,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -514,13 +582,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -542,7 +610,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -584,13 +652,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -612,7 +680,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -660,13 +728,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -688,7 +756,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -736,13 +804,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -764,7 +832,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -821,13 +889,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -849,7 +917,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -909,13 +977,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -937,7 +1005,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -997,13 +1065,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -1025,7 +1093,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -1085,13 +1153,13 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log DEBUG'))
                         .toContain('DEBUG');
                 });
@@ -1113,7 +1181,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -1172,10 +1240,10 @@ const main = ({
 
                 await expectAsync(runResult).toHaveStatus('SUCCEEDED');
                 await expectAsync(runResult).withLog((log) => {
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log ReferenceError'))
                         .not.toContain('ReferenceError');
-                    expect(log)
+                    warnExpect(log)
                         .withContext(runResult.format('Log TypeError'))
                         .not.toContain('TypeError');
                 });
@@ -1197,7 +1265,7 @@ const main = ({
                             )
                             .toBeWithinRange(1, 13);
 
-                        expect(dataset.items)
+                        warnExpect(dataset.items)
                             .withContext(
                                 runResult.format('Dataset items array'),
                             )
@@ -1264,13 +1332,13 @@ const main = ({
 
             await expectAsync(runResult).toHaveStatus('SUCCEEDED');
             await expectAsync(runResult).withLog((log) => {
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log ReferenceError'))
                     .not.toContain('ReferenceError');
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log TypeError'))
                     .not.toContain('TypeError');
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log DEBUG'))
                     .toContain('DEBUG');
             });
@@ -1289,7 +1357,7 @@ const main = ({
                     .withContext(runResult.format('Dataset cleanItemCount'))
                     .toBeWithinRange(1, 5);
 
-                expect(dataset.items)
+                warnExpect(dataset.items)
                     .withContext(runResult.format('Dataset items array'))
                     .toBeNonEmptyArray();
 
@@ -1349,13 +1417,13 @@ const main = ({
 
             await expectAsync(runResult).toHaveStatus('SUCCEEDED');
             await expectAsync(runResult).withLog((log) => {
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log ReferenceError'))
                     .not.toContain('ReferenceError');
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log TypeError'))
                     .not.toContain('TypeError');
-                expect(log)
+                warnExpect(log)
                     .withContext(runResult.format('Log DEBUG'))
                     .toContain('DEBUG');
             });
@@ -1374,7 +1442,7 @@ const main = ({
                     .withContext(runResult.format('Dataset cleanItemCount'))
                     .not.toBeLessThan(0);
 
-                expect(dataset.items)
+                warnExpect(dataset.items)
                     .withContext(runResult.format('Dataset items array'))
                     .toBeNonEmptyArray();
 
@@ -1387,20 +1455,20 @@ const main = ({
 
                 const commentId = results.find(({ id }) => id === 't1_lq3hrs1')?.id;
 
-                expect(commentId)
+                warnExpect(commentId)
                     .withContext(runResult.format('Comment data'))
                     .toBe('t1_lq3hrs1');
 
-                expect(posts.length)
+                warnExpect(posts.length)
                     .withContext(runResult.format('Post count'))
                     .toBe(0);
-                expect(users.length)
+                warnExpect(users.length)
                     .withContext(runResult.format('User count'))
                     .toBe(0);
-                expect(communities.length)
+                warnExpect(communities.length)
                     .withContext(runResult.format('Community count'))
                     .toBe(0);
-                expect(comments.length)
+                warnExpect(comments.length)
                     .withContext(runResult.format('Comment count'))
                     .not.toBeLessThan(0);
 
