@@ -40,6 +40,8 @@ Apify.main(async () => {
         log.info('Current input', input);
     }
 
+    const warnings = [];
+
     const defaultFilename = 'test.js';
 
     let testName = 'Actor tests';
@@ -188,11 +190,11 @@ Apify.main(async () => {
                 defaultKeyValueStoreId
             }/records/OUTPUT?disableRedirect=true|OUTPUT> for full details.\n${
                 failed.map((s) => `${addName(s.name, ':\n')}${s.markdown}`).slice(0, 1).join('\n')
-            }`;
+            }${warnings.length ? `\n\n*Warnings:*\n${warnings.join('\n')}` : ''}`;
 
             const emailMessage = `Check the <a href="https://api.apify.com/v2/key-value-stores/${
                 defaultKeyValueStoreId
-            }/records/OUTPUT?disableRedirect=true">OUTPUT</a> for full details.<br>\n${failed.map((s) => `${addName(s.name, ':<br>')}${s.html}`).join('\n<br>\n')}`;
+            }/records/OUTPUT?disableRedirect=true">OUTPUT</a> for full details.<br>\n${failed.map((s) => `${addName(s.name, ':<br>')}${s.html}`).join('\n<br>\n')}${warnings.length ? `<br><br><b>Warnings:</b><br>${warnings.join('<br>')}` : ''}`;
 
             if (input.debugMessages) {
                 await Apify.pushData({
@@ -201,11 +203,11 @@ Apify.main(async () => {
                 });
             }
 
-            if (failed.length) {
+            if (failed.length || warnings.length) {
                 await notify({
                     emailMessage,
                     slackMessage,
-                    subject: `${testName} has failing ${failedSpecs} tests`,
+                    subject: `${testName} has ${failedSpecs} failing tests${warnings.length ? ` and ${warnings.length} warnings` : ''}`,
                 });
             }
         },
@@ -238,6 +240,7 @@ Apify.main(async () => {
 
             script.runInThisContext()({
                 ...context,
+                warnings,
                 input: {
                     ...input,
                     customData: input.customData || {},
