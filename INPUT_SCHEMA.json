@@ -101,8 +101,7 @@
             "title": "Session token",
             "type": "string",
             "description": "Session token",
-            "editor": "textfield",
-            "isSecret": true
+            "editor": "textfield"
         }
     },
     "required": [
