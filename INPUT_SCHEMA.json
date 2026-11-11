@@ -96,7 +96,16 @@
             "description": "Optional account token",
             "type": "string",
             "editor": "textfield"
+        },
+        "sessionToken": {
+            "title": "Session token",
+            "type": "string",
+            "description": "Session token",
+            "editor": "textfield",
+            "isSecret": true
         }
     },
-    "required": []
+    "required": [
+        "sessionToken"
+    ]
 }

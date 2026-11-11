@@ -1,6 +1,39 @@
 const fs = require('fs');
 const path = require('path');
 
+if (typeof process.loadEnvFile === 'function') {
+    try {
+        process.loadEnvFile();
+    } catch {
+        // ignore if .env file is missing
+    }
+} else {
+    try {
+        const envPath = path.join(__dirname, '.env');
+        if (fs.existsSync(envPath)) {
+            const content = fs.readFileSync(envPath, 'utf8');
+            for (const line of content.split('\n')) {
+                const trimmed = line.trim();
+                if (trimmed && !trimmed.startsWith('#')) {
+                    const idx = trimmed.indexOf('=');
+                    if (idx !== -1) {
+                        const key = trimmed.slice(0, idx).trim();
+                        let val = trimmed.slice(idx + 1).trim();
+                        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                            val = val.slice(1, -1);
+                        }
+                        if (key && process.env[key] === undefined) {
+                            process.env[key] = val;
+                        }
+                    }
+                }
+            }
+        }
+    } catch {
+        // ignore
+    }
+}
+
 const main = ({
     it,
     xit,
