@@ -1,57 +1,70 @@
 [
   [
-    "48a2a2b877647c7a",
+    "8ac7a8726e2e3575",
     {
-      "hashCode": "48a2a2b877647c7a",
+      "hashCode": "8ac7a8726e2e3575",
       "data": {
-        "id": "l4n9cjEAQE26GtNgq",
+        "id": "Ziis2K5B7Q19mJHd5",
         "actId": "oAuCIx3ItNrs2okjQ",
         "stats": {
-          "inputBodyLen": 452,
+          "inputBodyLen": 561,
           "migrationCount": 0,
           "rebootCount": 0,
           "restartCount": 0,
           "resurrectCount": 0,
           "computeUnits": 0
         },
-        "defaultKeyValueStoreId": "E7NpoPleezO5WI5nK",
-        "defaultDatasetId": "rGmBj3vjWh2HOc8Yk",
-        "defaultRequestQueueId": "4YwpbxAst1aTbdlHE",
+        "defaultKeyValueStoreId": "groKuzOi9SUrhWNhV",
+        "defaultDatasetId": "rEbuurMVf4tkcyKeu",
+        "defaultRequestQueueId": "1BaURSMURUUKi0rU1",
+        "storageIds": {
+          "keyValueStores": {
+            "default": "groKuzOi9SUrhWNhV"
+          },
+          "datasets": {
+            "default": "rEbuurMVf4tkcyKeu"
+          },
+          "requestQueues": {
+            "default": "1BaURSMURUUKi0rU1"
+          }
+        },
         "pricingInfo": {
+          "minimalMaxTotalChargeUsd": 0.04,
           "pricingModel": "PAY_PER_EVENT",
-          "reasonForChange": "We are switching to Pay Per Event for a better pricing for our customers.",
-          "startedAt": "2025-02-20T00:00:00.000Z",
-          "minimalMaxTotalChargeUsd": null,
-          "createdAt": "2025-02-13T10:52:56.554Z",
+          "isPriceChangeNotificationSuppressed": false,
+          "startedAt": "2026-06-30T00:28:51.119Z",
+          "createdAt": "2026-06-30T00:28:49.618Z",
           "apifyMarginPercentage": 0.2,
-          "notifiedAboutFutureChangeAt": "2025-02-13T10:53:21.733Z",
-          "notifiedAboutChangeAt": "2025-02-20T02:39:19.462Z",
           "pricingPerEvent": {
             "actorChargeEvents": {
-              "actor-start-gb": {
-                "eventTitle": "Actor start per 1 GB",
-                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
-                "eventPriceUsd": 0.02
-              },
               "result": {
                 "eventTitle": "Result stored",
                 "eventDescription": "Cost per result stored.",
-                "eventPriceUsd": 0.004
+                "isOneTimeEvent": false,
+                "isPrimaryEvent": true,
+                "eventPriceUsd": 0.0038
+              },
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "isOneTimeEvent": true,
+                "eventPriceUsd": 0.02
               }
             }
           }
         },
         "chargedEventCounts": {
-          "actor-start-gb": 0,
-          "result": 0
+          "result": 0,
+          "actor-start-gb": 0
         },
         "platformUsageBillingModel": "USER",
         "accountedChargedEventCounts": {
-          "actor-start-gb": 0,
-          "result": 0
+          "result": 0,
+          "actor-start-gb": 0
         },
+        "standby": null,
         "generalAccess": "FOLLOW_USER_SETTING",
-        "buildNumber": "4.18.8",
+        "buildNumber": "5.9.10",
         "usage": {
           "ACTOR_COMPUTE_UNITS": 0,
           "DATASET_READS": 0,
@@ -64,7 +77,8 @@
           "DATA_TRANSFER_INTERNAL_GBYTES": 0,
           "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
-          "PROXY_SERPS": 0
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
         },
         "usageTotalUsd": 0.00005,
         "usageUsd": {
@@ -79,13 +93,326 @@
           "DATA_TRANSFER_INTERNAL_GBYTES": 0,
           "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
           "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
-          "PROXY_SERPS": 0
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
         },
-        "consoleUrl": "https://console.apify.com/view/runs/l4n9cjEAQE26GtNgq",
+        "consoleUrl": "https://console.apify.com/view/runs/Ziis2K5B7Q19mJHd5",
         "actorName": "reddit-scraper-lite",
         "name": "Reddit Search Post Health Check"
       },
-      "runId": "l4n9cjEAQE26GtNgq"
+      "runId": "Ziis2K5B7Q19mJHd5"
+    }
+  ],
+  [
+    "ffc9b7354874eefe",
+    {
+      "hashCode": "ffc9b7354874eefe",
+      "data": {
+        "id": "i50Df8kdBqYYx472K",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 562,
+          "migrationCount": 0,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "Q5gu9BF3yY4Xag2CJ",
+        "defaultDatasetId": "xnjAMhbWoHtlW8wIS",
+        "defaultRequestQueueId": "dDeTyYL1Z1Phyg5Rk",
+        "storageIds": {
+          "keyValueStores": {
+            "default": "Q5gu9BF3yY4Xag2CJ"
+          },
+          "datasets": {
+            "default": "xnjAMhbWoHtlW8wIS"
+          },
+          "requestQueues": {
+            "default": "dDeTyYL1Z1Phyg5Rk"
+          }
+        },
+        "pricingInfo": {
+          "minimalMaxTotalChargeUsd": 0.04,
+          "pricingModel": "PAY_PER_EVENT",
+          "isPriceChangeNotificationSuppressed": false,
+          "startedAt": "2026-06-30T00:28:51.119Z",
+          "createdAt": "2026-06-30T00:28:49.618Z",
+          "apifyMarginPercentage": 0.2,
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "isOneTimeEvent": false,
+                "isPrimaryEvent": true,
+                "eventPriceUsd": 0.0038
+              },
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "isOneTimeEvent": true,
+                "eventPriceUsd": 0.02
+              }
+            }
+          }
+        },
+        "chargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "standby": null,
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "5.9.10",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "consoleUrl": "https://console.apify.com/view/runs/i50Df8kdBqYYx472K",
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Post Health Check without media links"
+      },
+      "runId": "i50Df8kdBqYYx472K"
+    }
+  ],
+  [
+    "06069ea5458ba353",
+    {
+      "hashCode": "06069ea5458ba353",
+      "data": {
+        "id": "oeGKBIkvwawfmgB6y",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 615,
+          "migrationCount": 0,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "1ghhx9Q2aGOaxClIU",
+        "defaultDatasetId": "2DGrIsdiykM0aji9H",
+        "defaultRequestQueueId": "E0ZEshe3yqk8x5VAT",
+        "storageIds": {
+          "keyValueStores": {
+            "default": "1ghhx9Q2aGOaxClIU"
+          },
+          "datasets": {
+            "default": "2DGrIsdiykM0aji9H"
+          },
+          "requestQueues": {
+            "default": "E0ZEshe3yqk8x5VAT"
+          }
+        },
+        "pricingInfo": {
+          "minimalMaxTotalChargeUsd": 0.04,
+          "pricingModel": "PAY_PER_EVENT",
+          "isPriceChangeNotificationSuppressed": false,
+          "startedAt": "2026-06-30T00:28:51.119Z",
+          "createdAt": "2026-06-30T00:28:49.618Z",
+          "apifyMarginPercentage": 0.2,
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "isOneTimeEvent": false,
+                "isPrimaryEvent": true,
+                "eventPriceUsd": 0.0038
+              },
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "isOneTimeEvent": true,
+                "eventPriceUsd": 0.02
+              }
+            }
+          }
+        },
+        "chargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "standby": null,
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "5.9.10",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "consoleUrl": "https://console.apify.com/view/runs/oeGKBIkvwawfmgB6y",
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit Search Post Date Limit Health Check"
+      },
+      "runId": "oeGKBIkvwawfmgB6y"
+    }
+  ],
+  [
+    "5733575f692f2ea6",
+    {
+      "hashCode": "5733575f692f2ea6",
+      "data": {
+        "id": "d6x6PLiJBEexydoWa",
+        "actId": "oAuCIx3ItNrs2okjQ",
+        "stats": {
+          "inputBodyLen": 662,
+          "migrationCount": 0,
+          "rebootCount": 0,
+          "restartCount": 0,
+          "resurrectCount": 0,
+          "computeUnits": 0
+        },
+        "defaultKeyValueStoreId": "VaDUEcGyN9ZuyuWaA",
+        "defaultDatasetId": "TcEaZwRRAUQbkeW3h",
+        "defaultRequestQueueId": "kUGqswEqWmIHXztjS",
+        "storageIds": {
+          "keyValueStores": {
+            "default": "VaDUEcGyN9ZuyuWaA"
+          },
+          "datasets": {
+            "default": "TcEaZwRRAUQbkeW3h"
+          },
+          "requestQueues": {
+            "default": "kUGqswEqWmIHXztjS"
+          }
+        },
+        "pricingInfo": {
+          "minimalMaxTotalChargeUsd": 0.04,
+          "pricingModel": "PAY_PER_EVENT",
+          "isPriceChangeNotificationSuppressed": false,
+          "startedAt": "2026-06-30T00:28:51.119Z",
+          "createdAt": "2026-06-30T00:28:49.618Z",
+          "apifyMarginPercentage": 0.2,
+          "pricingPerEvent": {
+            "actorChargeEvents": {
+              "result": {
+                "eventTitle": "Result stored",
+                "eventDescription": "Cost per result stored.",
+                "isOneTimeEvent": false,
+                "isPrimaryEvent": true,
+                "eventPriceUsd": 0.0038
+              },
+              "actor-start-gb": {
+                "eventTitle": "Actor start per 1 GB",
+                "eventDescription": "Flat fee for starting an Actor run for each 1 GB of memory.",
+                "isOneTimeEvent": true,
+                "eventPriceUsd": 0.02
+              }
+            }
+          }
+        },
+        "chargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "platformUsageBillingModel": "USER",
+        "accountedChargedEventCounts": {
+          "result": 0,
+          "actor-start-gb": 0
+        },
+        "standby": null,
+        "generalAccess": "FOLLOW_USER_SETTING",
+        "buildNumber": "5.9.10",
+        "usage": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 1,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "usageTotalUsd": 0.00005,
+        "usageUsd": {
+          "ACTOR_COMPUTE_UNITS": 0,
+          "DATASET_READS": 0,
+          "DATASET_WRITES": 0,
+          "KEY_VALUE_STORE_READS": 0,
+          "KEY_VALUE_STORE_WRITES": 0.00005,
+          "KEY_VALUE_STORE_LISTS": 0,
+          "REQUEST_QUEUE_READS": 0,
+          "REQUEST_QUEUE_WRITES": 0,
+          "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+          "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+          "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+          "PROXY_SERPS": 0,
+          "PROXY_UNBLOCKER_UNITS": 0
+        },
+        "consoleUrl": "https://console.apify.com/view/runs/d6x6PLiJBEexydoWa",
+        "actorName": "reddit-scraper-lite",
+        "name": "Reddit PRO Search Post Start Url Health Check"
+      },
+      "runId": "d6x6PLiJBEexydoWa"
     }
   ]
 ]

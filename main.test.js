@@ -12,6 +12,12 @@ const main = ({
     describe,
     warnings,
 }) => {
+    const { sessionToken } = input;
+
+    if (!sessionToken) {
+        throw new Error('Missing required input "sessionToken" parameter');
+    }
+
     const warnExpect = (actual) => {
         const wrap = (contextMessage) => ({
             toBeNonEmptyString: () => {
@@ -250,6 +256,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 0,
                         maxCommunitiesCount: 0,
@@ -325,6 +332,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 0,
                         maxCommunitiesCount: 0,
@@ -400,6 +408,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         skipComments: true,
                         skipUserPosts: false,
@@ -471,6 +480,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 0,
                         maxCommunitiesCount: 0,
@@ -550,6 +560,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 0,
                         maxCommunitiesCount: 0,
@@ -623,6 +634,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 10,
                         maxCommunitiesCount: 0,
@@ -699,6 +711,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 0,
                         maxCommunitiesCount: 10,
@@ -775,6 +788,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -859,6 +873,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -944,6 +959,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -1032,6 +1048,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -1120,6 +1137,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -1208,6 +1226,7 @@ const main = ({
                 const runResult = await run({
                     actorId: 'oAuCIx3ItNrs2okjQ',
                     input: {
+                        sessionToken,
                         debugMode: true,
                         maxComments: 2,
                         maxCommunitiesCount: 2,
@@ -1293,6 +1312,7 @@ const main = ({
             const runResult = await run({
                 actorId: 'oAuCIx3ItNrs2okjQ',
                 input: {
+                    sessionToken,
                     debugMode: true,
                     maxComments: 1,
                     maxCommunitiesAndUsers: 5000000,
@@ -1384,6 +1404,7 @@ const main = ({
             const runResult = await run({
                 actorId: 'oAuCIx3ItNrs2okjQ',
                 input: {
+                    sessionToken,
                     debugMode: true,
                     maxComments: 10,
                     maxCommunitiesAndUsers: 5000000,
@@ -1488,6 +1509,7 @@ const input = {
     retryFailedTests: true,
     versions: ['latest'],
     email: 'gustavo@trudax.tech',
+    sessionToken: process.env.SESSION_TOKEN || 'YOUR_SESSION_TOKEN_HERE',
     testSpec: main.toString(),
     verboseLogs: true,
 };
